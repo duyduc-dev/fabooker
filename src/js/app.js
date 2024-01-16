@@ -1,4 +1,3 @@
-import {footerList} from './hashData/footer.js';
 // import Swiper styles
 
 const app = () => {

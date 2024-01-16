@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import {LitElement, html} from '../lib/lit.js';
 import Swiper from 'swiper';
-import {Navigation} from 'swiper/modules';
+import {Navigation, Autoplay} from 'swiper/modules';
+import {LitElement, html} from '../../js/lib/lit';
 
-class AppCarouselHome extends LitElement {
+export default class AppCarouselHome extends LitElement {
   createRenderRoot() {
     return this;
   }
@@ -23,7 +23,8 @@ class AppCarouselHome extends LitElement {
 
   updated() {
     new Swiper('#swiper-carousel-home', {
-      modules: [Navigation],
+      modules: [Navigation, Autoplay],
+      autoplay: true,
       loop: true,
       navigation: {
         nextEl: '.swiper-btn-next',

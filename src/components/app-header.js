@@ -1,4 +1,4 @@
-import {LitElement, html} from '../lib/lit';
+import {LitElement, html} from '../js/lib/lit';
 
 export default class AppHeader extends LitElement {
   static properties = {};
@@ -19,7 +19,7 @@ export default class AppHeader extends LitElement {
         <!-- Begin: search header -->
         <div class="flex flex-1 items-center gap-4">
           <div class="flex gap-2 items-center">
-            <img src="./dist//assets/icon//ico_menu.svg" alt="" />
+            <img src="./dist/assets/icon//ico_menu.svg" alt="" />
             <div class="text-[16px] text-grey-500">
               <i class="fa-solid fa-chevron-down"></i>
             </div>
@@ -54,7 +54,10 @@ export default class AppHeader extends LitElement {
             </div>
             <p class="text-[12px]">Giỏ hàng</p>
           </button>
-          <button class="text-grey-500">
+          <button
+            @click="${() => (location.href = '/auth.html')}"
+            class="text-grey-500"
+          >
             <div class="text-[20px] text-grey-500">
               <i class="fa-regular fa-user"></i>
             </div>

@@ -1,6 +1,5 @@
-import {footerList} from '../js/hashData/footer.js';
-import {LitElement, html} from '../lib/lit.js';
-
+import {footerList} from '../js/hashData/footer';
+import { LitElement, html } from '../js/lib/lit';
 export default class AppFooter extends LitElement {
   static properties = {
     _dataFooter: {state: true, type: Array},
@@ -53,7 +52,7 @@ export default class AppFooter extends LitElement {
             </div>
           </div>
           <div class="pl-[30px] flex flex-wrap gap-4 mt-4" x-data>
-            ${this._dataFooter.map(
+            ${footerList.map(
               (child) => html`<div>
                 <h2 class="font-bold">${child.title}</h2>
                 <ul x-data>

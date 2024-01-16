@@ -1,1 +1,3398 @@
-(()=>{"use strict";var e,t,n,r,i=!1,o=!1,a=[],s=-1;function l(e){let t=a.indexOf(e);-1!==t&&t>s&&a.splice(t,1)}function c(){i=!1,o=!0;for(let e=0;e<a.length;e++)a[e](),s=e;a.length=0,s=-1,o=!1}var u=!0;function f(e){t=e}function d(e,t,n={}){e.dispatchEvent(new CustomEvent(t,{detail:n,bubbles:!0,composed:!0,cancelable:!0}))}function p(e,t){if("function"==typeof ShadowRoot&&e instanceof ShadowRoot)return void Array.from(e.children).forEach((e=>p(e,t)));let n=!1;if(t(e,(()=>n=!0)),n)return;let r=e.firstElementChild;for(;r;)p(r,t),r=r.nextElementSibling}function _(e,...t){console.warn(`Alpine Warning: ${e}`,...t)}var h=!1,x=[],m=[];function g(){return x.map((e=>e()))}function v(){return x.concat(m).map((e=>e()))}function y(e){x.push(e)}function b(e){m.push(e)}function w(e,t=!1){return E(e,(e=>{if((t?v():g()).some((t=>e.matches(t))))return!0}))}function E(e,t){if(e){if(t(e))return e;if(e._x_teleportBack&&(e=e._x_teleportBack),e.parentElement)return E(e.parentElement,t)}}var A=[];function O(e,t=p,n=(()=>{})){!function(r){ge=!0;let i=Symbol();ye=i,ve.set(i,[]);let o=()=>{for(;ve.get(i).length;)ve.get(i).shift()();ve.delete(i)};t(e,((e,t)=>{n(e,t),A.forEach((n=>n(e,t))),xe(e,e.attributes).forEach((e=>e())),e._x_ignore&&t()})),ge=!1,o()}()}function S(e){p(e,(e=>{L(e),function(e){if(e._x_cleanups)for(;e._x_cleanups.length;)e._x_cleanups.pop()()}(e)}))}var k=[],j=[],C=[];function $(e,t){"function"==typeof t?(e._x_cleanups||(e._x_cleanups=[]),e._x_cleanups.push(t)):(t=e,j.push(t))}function N(e){k.push(e)}function M(e,t,n){e._x_attributeCleanups||(e._x_attributeCleanups={}),e._x_attributeCleanups[t]||(e._x_attributeCleanups[t]=[]),e._x_attributeCleanups[t].push(n)}function L(e,t){e._x_attributeCleanups&&Object.entries(e._x_attributeCleanups).forEach((([n,r])=>{(void 0===t||t.includes(n))&&(r.forEach((e=>e())),delete e._x_attributeCleanups[n])}))}var P=new MutationObserver(W),R=!1;function T(){P.observe(document,{subtree:!0,childList:!0,attributes:!0,attributeOldValue:!0}),R=!0}function z(){(B=B.concat(P.takeRecords())).length&&!I&&(I=!0,queueMicrotask((()=>{W(B),B.length=0,I=!1}))),P.disconnect(),R=!1}var B=[],I=!1;function D(e){if(!R)return e();z();let t=e();return T(),t}var F=!1,q=[];function W(e){if(F)return void(q=q.concat(e));let t=[],n=[],r=new Map,i=new Map;for(let o=0;o<e.length;o++)if(!e[o].target._x_ignoreMutationObserver&&("childList"===e[o].type&&(e[o].addedNodes.forEach((e=>1===e.nodeType&&t.push(e))),e[o].removedNodes.forEach((e=>1===e.nodeType&&n.push(e)))),"attributes"===e[o].type)){let t=e[o].target,n=e[o].attributeName,a=e[o].oldValue,s=()=>{r.has(t)||r.set(t,[]),r.get(t).push({name:n,value:t.getAttribute(n)})},l=()=>{i.has(t)||i.set(t,[]),i.get(t).push(n)};t.hasAttribute(n)&&null===a?s():t.hasAttribute(n)?(l(),s()):l()}i.forEach(((e,t)=>{L(t,e)})),r.forEach(((e,t)=>{k.forEach((n=>n(t,e)))}));for(let e of n)t.includes(e)||(j.forEach((t=>t(e))),S(e));t.forEach((e=>{e._x_ignoreSelf=!0,e._x_ignore=!0}));for(let e of t)n.includes(e)||e.isConnected&&(delete e._x_ignoreSelf,delete e._x_ignore,C.forEach((t=>t(e))),e._x_ignore=!0,e._x_ignoreSelf=!0);t.forEach((e=>{delete e._x_ignoreSelf,delete e._x_ignore})),t=null,n=null,r=null,i=null}function J(e){return V(U(e))}function K(e,t,n){return e._x_dataStack=[t,...U(n||e)],()=>{e._x_dataStack=e._x_dataStack.filter((e=>e!==t))}}function U(e){return e._x_dataStack?e._x_dataStack:"function"==typeof ShadowRoot&&e instanceof ShadowRoot?U(e.host):e.parentNode?U(e.parentNode):[]}function V(e){return new Proxy({objects:e},H)}var H={ownKeys:({objects:e})=>Array.from(new Set(e.flatMap((e=>Object.keys(e))))),has:({objects:e},t)=>t!=Symbol.unscopables&&e.some((e=>Object.prototype.hasOwnProperty.call(e,t))),get:({objects:e},t,n)=>"toJSON"==t?Z:Reflect.get(e.find((e=>Object.prototype.hasOwnProperty.call(e,t)))||{},t,n),set({objects:e},t,n,r){const i=e.find((e=>Object.prototype.hasOwnProperty.call(e,t)))||e[e.length-1],o=Object.getOwnPropertyDescriptor(i,t);return o?.set&&o?.get?Reflect.set(i,t,n,r):Reflect.set(i,t,n)}};function Z(){return Reflect.ownKeys(this).reduce(((e,t)=>(e[t]=Reflect.get(this,t),e)),{})}function X(e){let t=(n,r="")=>{Object.entries(Object.getOwnPropertyDescriptors(n)).forEach((([i,{value:o,enumerable:a}])=>{if(!1===a||void 0===o)return;let s=""===r?i:`${r}.${i}`;var l;"object"==typeof o&&null!==o&&o._x_interceptor?n[i]=o.initialize(e,s,i):"object"!=typeof(l=o)||Array.isArray(l)||null===l||o===n||o instanceof Element||t(o,s)}))};return t(e)}function Y(e,t=(()=>{})){let n={initialValue:void 0,_x_interceptor:!0,initialize(t,n,r){return e(this.initialValue,(()=>function(e,t){return t.split(".").reduce(((e,t)=>e[t]),e)}(t,n)),(e=>G(t,n,e)),n,r)}};return t(n),e=>{if("object"==typeof e&&null!==e&&e._x_interceptor){let t=n.initialize.bind(n);n.initialize=(r,i,o)=>{let a=e.initialize(r,i,o);return n.initialValue=a,t(r,i,o)}}else n.initialValue=e;return n}}function G(e,t,n){if("string"==typeof t&&(t=t.split(".")),1!==t.length){if(0===t.length)throw error;return e[t[0]]||(e[t[0]]={}),G(e[t[0]],t.slice(1),n)}e[t[0]]=n}var Q={};function ee(e,t){Q[e]=t}function te(e,t){return Object.entries(Q).forEach((([n,r])=>{let i=null;Object.defineProperty(e,`$${n}`,{get:()=>r(t,function(){if(i)return i;{let[e,n]=be(t);return i={interceptor:Y,...e},$(t,n),i}}()),enumerable:!1})})),e}function ne(e,t,n,...r){try{return n(...r)}catch(n){re(n,e,t)}}function re(e,t,n=undefined){Object.assign(e,{el:t,expression:n}),console.warn(`Alpine Expression Error: ${e.message}\n\n${n?'Expression: "'+n+'"\n\n':""}`,t),setTimeout((()=>{throw e}),0)}var ie=!0;function oe(e){let t=ie;ie=!1;let n=e();return ie=t,n}function ae(e,t,n={}){let r;return se(e,t)((e=>r=e),n),r}function se(...e){return le(...e)}var le=ce;function ce(e,t){let n={};te(n,e);let r=[n,...U(e)],i="function"==typeof t?function(e,t){return(n=(()=>{}),{scope:r={},params:i=[]}={})=>{fe(n,t.apply(V([r,...e]),i))}}(r,t):function(e,t,n){let r=function(e,t){if(ue[e])return ue[e];let n=Object.getPrototypeOf((async function(){})).constructor,r=/^[\n\s]*if.*\(.*\)/.test(e.trim())||/^(let|const)\s/.test(e.trim())?`(async()=>{ ${e} })()`:e;let i=(()=>{try{let t=new n(["__self","scope"],`with (scope) { __self.result = ${r} }; __self.finished = true; return __self.result;`);return Object.defineProperty(t,"name",{value:`[Alpine] ${e}`}),t}catch(n){return re(n,t,e),Promise.resolve()}})();return ue[e]=i,i}(t,n);return(i=(()=>{}),{scope:o={},params:a=[]}={})=>{r.result=void 0,r.finished=!1;let s=V([o,...e]);if("function"==typeof r){let e=r(r,s).catch((e=>re(e,n,t)));r.finished?(fe(i,r.result,s,a,n),r.result=void 0):e.then((e=>{fe(i,e,s,a,n)})).catch((e=>re(e,n,t))).finally((()=>r.result=void 0))}}}(r,t,e);return ne.bind(null,e,t,i)}var ue={};function fe(e,t,n,r,i){if(ie&&"function"==typeof t){let o=t.apply(n,r);o instanceof Promise?o.then((t=>fe(e,t,n,r))).catch((e=>re(e,i,t))):e(o)}else"object"==typeof t&&t instanceof Promise?t.then((t=>e(t))):e(t)}var de="x-";function pe(e=""){return de+e}var _e={};function he(e,t){return _e[e]=t,{before(t){if(!_e[t])return void console.warn("Cannot find directive `${directive}`. `${name}` will use the default order of execution");const n=Ce.indexOf(t);Ce.splice(n>=0?n:Ce.indexOf("DEFAULT"),0,e)}}}function xe(e,t,n){if(t=Array.from(t),e._x_virtualDirectives){let n=Object.entries(e._x_virtualDirectives).map((([e,t])=>({name:e,value:t}))),r=me(n);n=n.map((e=>r.find((t=>t.name===e.name))?{name:`x-bind:${e.name}`,value:`"${e.value}"`}:e)),t=t.concat(n)}let r={},i=t.map(Ee(((e,t)=>r[e]=t))).filter(Se).map(function(e,t){return({name:n,value:r})=>{let i=n.match(ke()),o=n.match(/:([a-zA-Z0-9\-_:]+)/),a=n.match(/\.[^.\]]+(?=[^\]]*$)/g)||[],s=t||e[n]||n;return{type:i?i[1]:null,value:o?o[1]:null,modifiers:a.map((e=>e.replace(".",""))),expression:r,original:s}}}(r,n)).sort($e);return i.map((t=>function(e,t){let n=_e[t.type]||(()=>{}),[r,i]=be(e);M(e,t.original,i);let o=()=>{e._x_ignore||e._x_ignoreSelf||(n.inline&&n.inline(e,t,r),n=n.bind(n,e,t,r),ge?ve.get(ye).push(n):n())};return o.runCleanups=i,o}(e,t)))}function me(e){return Array.from(e).map(Ee()).filter((e=>!Se(e)))}var ge=!1,ve=new Map,ye=Symbol();function be(e){let r=[],[i,o]=function(e){let r=()=>{};return[i=>{let o=t(i);return e._x_effects||(e._x_effects=new Set,e._x_runEffects=()=>{e._x_effects.forEach((e=>e()))}),e._x_effects.add(o),r=()=>{void 0!==o&&(e._x_effects.delete(o),n(o))},o},()=>{r()}]}(e);return r.push(o),[{Alpine:ut,effect:i,cleanup:e=>r.push(e),evaluateLater:se.bind(se,e),evaluate:ae.bind(ae,e)},()=>r.forEach((e=>e()))]}var we=(e,t)=>({name:n,value:r})=>(n.startsWith(e)&&(n=n.replace(e,t)),{name:n,value:r});function Ee(e=(()=>{})){return({name:t,value:n})=>{let{name:r,value:i}=Ae.reduce(((e,t)=>t(e)),{name:t,value:n});return r!==t&&e(r,t),{name:r,value:i}}}var Ae=[];function Oe(e){Ae.push(e)}function Se({name:e}){return ke().test(e)}var ke=()=>new RegExp(`^${de}([^:^.]+)\\b`),je="DEFAULT",Ce=["ignore","ref","data","id","anchor","bind","init","for","model","modelable","transition","show","if",je,"teleport"];function $e(e,t){let n=-1===Ce.indexOf(e.type)?je:e.type,r=-1===Ce.indexOf(t.type)?je:t.type;return Ce.indexOf(n)-Ce.indexOf(r)}var Ne=[],Me=!1;function Le(e=(()=>{})){return queueMicrotask((()=>{Me||setTimeout((()=>{Pe()}))})),new Promise((t=>{Ne.push((()=>{e(),t()}))}))}function Pe(){for(Me=!1;Ne.length;)Ne.shift()()}function Re(e,t){return Array.isArray(t)?Te(e,t.join(" ")):"object"==typeof t&&null!==t?function(e,t){let n=e=>e.split(" ").filter(Boolean),r=Object.entries(t).flatMap((([e,t])=>!!t&&n(e))).filter(Boolean),i=Object.entries(t).flatMap((([e,t])=>!t&&n(e))).filter(Boolean),o=[],a=[];return i.forEach((t=>{e.classList.contains(t)&&(e.classList.remove(t),a.push(t))})),r.forEach((t=>{e.classList.contains(t)||(e.classList.add(t),o.push(t))})),()=>{a.forEach((t=>e.classList.add(t))),o.forEach((t=>e.classList.remove(t)))}}(e,t):"function"==typeof t?Re(e,t()):Te(e,t)}function Te(e,t){return t=!0===t?t="":t||"",n=t.split(" ").filter((t=>!e.classList.contains(t))).filter(Boolean),e.classList.add(...n),()=>{e.classList.remove(...n)};var n}function ze(e,t){return"object"==typeof t&&null!==t?function(e,t){let n={};return Object.entries(t).forEach((([t,r])=>{n[t]=e.style[t],t.startsWith("--")||(t=t.replace(/([a-z])([A-Z])/g,"$1-$2").toLowerCase()),e.style.setProperty(t,r)})),setTimeout((()=>{0===e.style.length&&e.removeAttribute("style")})),()=>{ze(e,n)}}(e,t):function(e,t){let n=e.getAttribute("style",t);return e.setAttribute("style",t),()=>{e.setAttribute("style",n||"")}}(e,t)}function Be(e,t=(()=>{})){let n=!1;return function(){n?t.apply(this,arguments):(n=!0,e.apply(this,arguments))}}function Ie(e,t,n={}){e._x_transition||(e._x_transition={enter:{during:n,start:n,end:n},leave:{during:n,start:n,end:n},in(n=(()=>{}),r=(()=>{})){Fe(e,t,{during:this.enter.during,start:this.enter.start,end:this.enter.end},n,r)},out(n=(()=>{}),r=(()=>{})){Fe(e,t,{during:this.leave.during,start:this.leave.start,end:this.leave.end},n,r)}})}function De(e){let t=e.parentNode;if(t)return t._x_hidePromise?t:De(t)}function Fe(e,t,{during:n,start:r,end:i}={},o=(()=>{}),a=(()=>{})){if(e._x_transitioning&&e._x_transitioning.cancel(),0===Object.keys(n).length&&0===Object.keys(r).length&&0===Object.keys(i).length)return o(),void a();let s,l,c;!function(e,t){let n,r,i,o=Be((()=>{D((()=>{n=!0,r||t.before(),i||(t.end(),Pe()),t.after(),e.isConnected&&t.cleanup(),delete e._x_transitioning}))}));e._x_transitioning={beforeCancels:[],beforeCancel(e){this.beforeCancels.push(e)},cancel:Be((function(){for(;this.beforeCancels.length;)this.beforeCancels.shift()();o()})),finish:o},D((()=>{t.start(),t.during()})),Me=!0,requestAnimationFrame((()=>{if(n)return;let o=1e3*Number(getComputedStyle(e).transitionDuration.replace(/,.*/,"").replace("s","")),a=1e3*Number(getComputedStyle(e).transitionDelay.replace(/,.*/,"").replace("s",""));0===o&&(o=1e3*Number(getComputedStyle(e).animationDuration.replace("s",""))),D((()=>{t.before()})),r=!0,requestAnimationFrame((()=>{n||(D((()=>{t.end()})),Pe(),setTimeout(e._x_transitioning.finish,o+a),i=!0)}))}))}(e,{start(){s=t(e,r)},during(){l=t(e,n)},before:o,end(){s(),c=t(e,i)},after:a,cleanup(){l(),c()}})}function qe(e,t,n){if(-1===e.indexOf(t))return n;const r=e[e.indexOf(t)+1];if(!r)return n;if("scale"===t&&isNaN(r))return n;if("duration"===t||"delay"===t){let e=r.match(/([0-9]+)ms/);if(e)return e[1]}return"origin"===t&&["top","right","left","center","bottom"].includes(e[e.indexOf(t)+2])?[r,e[e.indexOf(t)+2]].join(" "):r}he("transition",((e,{value:t,modifiers:n,expression:r},{evaluate:i})=>{"function"==typeof r&&(r=i(r)),!1!==r&&(r&&"boolean"!=typeof r?function(e,t,n){Ie(e,Re,""),{enter:t=>{e._x_transition.enter.during=t},"enter-start":t=>{e._x_transition.enter.start=t},"enter-end":t=>{e._x_transition.enter.end=t},leave:t=>{e._x_transition.leave.during=t},"leave-start":t=>{e._x_transition.leave.start=t},"leave-end":t=>{e._x_transition.leave.end=t}}[n](t)}(e,r,t):function(e,t,n){Ie(e,ze);let r=!t.includes("in")&&!t.includes("out")&&!n,i=r||t.includes("in")||["enter"].includes(n),o=r||t.includes("out")||["leave"].includes(n);t.includes("in")&&!r&&(t=t.filter(((e,n)=>n<t.indexOf("out")))),t.includes("out")&&!r&&(t=t.filter(((e,n)=>n>t.indexOf("out"))));let a=!t.includes("opacity")&&!t.includes("scale"),s=a||t.includes("opacity")?0:1,l=a||t.includes("scale")?qe(t,"scale",95)/100:1,c=qe(t,"delay",0)/1e3,u=qe(t,"origin","center"),f="opacity, transform",d=qe(t,"duration",150)/1e3,p=qe(t,"duration",75)/1e3,_="cubic-bezier(0.4, 0.0, 0.2, 1)";i&&(e._x_transition.enter.during={transformOrigin:u,transitionDelay:`${c}s`,transitionProperty:f,transitionDuration:`${d}s`,transitionTimingFunction:_},e._x_transition.enter.start={opacity:s,transform:`scale(${l})`},e._x_transition.enter.end={opacity:1,transform:"scale(1)"}),o&&(e._x_transition.leave.during={transformOrigin:u,transitionDelay:`${c}s`,transitionProperty:f,transitionDuration:`${p}s`,transitionTimingFunction:_},e._x_transition.leave.start={opacity:1,transform:"scale(1)"},e._x_transition.leave.end={opacity:s,transform:`scale(${l})`})}(e,n,t))})),window.Element.prototype._x_toggleAndCascadeWithTransitions=function(e,t,n,r){const i="visible"===document.visibilityState?requestAnimationFrame:setTimeout;let o=()=>i(n);t?e._x_transition&&(e._x_transition.enter||e._x_transition.leave)?e._x_transition.enter&&(Object.entries(e._x_transition.enter.during).length||Object.entries(e._x_transition.enter.start).length||Object.entries(e._x_transition.enter.end).length)?e._x_transition.in(n):o():e._x_transition?e._x_transition.in(n):o():(e._x_hidePromise=e._x_transition?new Promise(((t,n)=>{e._x_transition.out((()=>{}),(()=>t(r))),e._x_transitioning&&e._x_transitioning.beforeCancel((()=>n({isFromCancelledTransition:!0})))})):Promise.resolve(r),queueMicrotask((()=>{let t=De(e);t?(t._x_hideChildren||(t._x_hideChildren=[]),t._x_hideChildren.push(e)):i((()=>{let t=e=>{let n=Promise.all([e._x_hidePromise,...(e._x_hideChildren||[]).map(t)]).then((([e])=>e()));return delete e._x_hidePromise,delete e._x_hideChildren,n};t(e).catch((e=>{if(!e.isFromCancelledTransition)throw e}))}))})))};var We=!1;function Je(e,t=(()=>{})){return(...n)=>We?t(...n):e(...n)}var Ke=[];function Ue(e){Ke.push(e)}var Ve=!1;function He(e){let r=t;f(((e,t)=>{let i=r(e);return n(i),()=>{}})),e(),f(r)}function Ze(t,n,r,i=[]){switch(t._x_bindings||(t._x_bindings=e({})),t._x_bindings[n]=r,n=i.includes("camel")?n.toLowerCase().replace(/-(\w)/g,((e,t)=>t.toUpperCase())):n){case"value":!function(e,t){if("radio"===e.type)void 0===e.attributes.value&&(e.value=t),window.fromModel&&(e.checked="boolean"==typeof t?Ge(e.value)===t:Ye(e.value,t));else if("checkbox"===e.type)Number.isInteger(t)?e.value=t:Array.isArray(t)||"boolean"==typeof t||[null,void 0].includes(t)?Array.isArray(t)?e.checked=t.some((t=>Ye(t,e.value))):e.checked=!!t:e.value=String(t);else if("SELECT"===e.tagName)!function(e,t){const n=[].concat(t).map((e=>e+""));Array.from(e.options).forEach((e=>{e.selected=n.includes(e.value)}))}(e,t);else{if(e.value===t)return;e.value=void 0===t?"":t}}(t,r);break;case"style":!function(e,t){e._x_undoAddedStyles&&e._x_undoAddedStyles(),e._x_undoAddedStyles=ze(e,t)}(t,r);break;case"class":!function(e,t){e._x_undoAddedClasses&&e._x_undoAddedClasses(),e._x_undoAddedClasses=Re(e,t)}(t,r);break;case"selected":case"checked":!function(e,t,n){Xe(e,t,n),function(e,t,n){e[t]!==n&&(e[t]=n)}(e,t,n)}(t,n,r);break;default:Xe(t,n,r)}}function Xe(e,t,n){[null,void 0,!1].includes(n)&&function(e){return!["aria-pressed","aria-checked","aria-expanded","aria-selected"].includes(e)}(t)?e.removeAttribute(t):(Qe(t)&&(n=t),function(e,t,n){e.getAttribute(t)!=n&&e.setAttribute(t,n)}(e,t,n))}function Ye(e,t){return e==t}function Ge(e){return!![1,"1","true","on","yes",!0].includes(e)||![0,"0","false","off","no",!1].includes(e)&&(e?Boolean(e):null)}function Qe(e){return["disabled","checked","required","readonly","hidden","open","selected","autofocus","itemscope","multiple","novalidate","allowfullscreen","allowpaymentrequest","formnovalidate","autoplay","controls","loop","muted","playsinline","default","ismap","reversed","async","defer","nomodule"].includes(e)}function et(e,t,n){let r=e.getAttribute(t);return null===r?"function"==typeof n?n():n:""===r||(Qe(t)?!![t,"true"].includes(r):r)}function tt(e,t){var n;return function(){var r=this,i=arguments;clearTimeout(n),n=setTimeout((function(){n=null,e.apply(r,i)}),t)}}function nt(e,t){let n;return function(){let r=arguments;n||(e.apply(this,r),n=!0,setTimeout((()=>n=!1),t))}}function rt({get:e,set:r},{get:i,set:o}){let a,s=!0,l=t((()=>{const t=e(),n=i();if(s)o(it(t)),s=!1,a=JSON.stringify(t);else{const e=JSON.stringify(t);e!==a?(o(it(t)),a=e):(r(it(n)),a=JSON.stringify(n))}JSON.stringify(i()),JSON.stringify(e())}));return()=>{n(l)}}function it(e){return"object"==typeof e?JSON.parse(JSON.stringify(e)):e}var ot={},at=!1,st={};function lt(e,t,n){let r=[];for(;r.length;)r.pop()();let i=Object.entries(t).map((([e,t])=>({name:e,value:t}))),o=me(i);return i=i.map((e=>o.find((t=>t.name===e.name))?{name:`x-bind:${e.name}`,value:`"${e.value}"`}:e)),xe(e,i,n).map((e=>{r.push(e.runCleanups),e()})),()=>{for(;r.length;)r.pop()()}}var ct={},ut={get reactive(){return e},get release(){return n},get effect(){return t},get raw(){return r},version:"3.13.3",flushAndStopDeferringMutations:function(){F=!1,W(q),q=[]},dontAutoEvaluateFunctions:oe,disableEffectScheduling:function(e){u=!1,e(),u=!0},startObservingMutations:T,stopObservingMutations:z,setReactivityEngine:function(s){e=s.reactive,n=s.release,t=e=>s.effect(e,{scheduler:e=>{u?function(e){var t;t=e,a.includes(t)||a.push(t),o||i||(i=!0,queueMicrotask(c))}(e):e()}}),r=s.raw},onAttributeRemoved:M,onAttributesAdded:N,closestDataStack:U,skipDuringClone:Je,onlyDuringClone:function(e){return(...t)=>We&&e(...t)},addRootSelector:y,addInitSelector:b,interceptClone:Ue,addScopeToNode:K,deferMutations:function(){F=!0},mapAttributes:Oe,evaluateLater:se,interceptInit:function(e){A.push(e)},setEvaluator:function(e){le=e},mergeProxies:V,extractProp:function(e,t,n,r=!0){if(e._x_bindings&&void 0!==e._x_bindings[t])return e._x_bindings[t];if(e._x_inlineBindings&&void 0!==e._x_inlineBindings[t]){let n=e._x_inlineBindings[t];return n.extract=r,oe((()=>ae(e,n.expression)))}return et(e,t,n)},findClosest:E,onElRemoved:$,closestRoot:w,destroyTree:S,interceptor:Y,transition:Fe,setStyles:ze,mutateDom:D,directive:he,entangle:rt,throttle:nt,debounce:tt,evaluate:ae,initTree:O,nextTick:Le,prefixed:pe,prefix:function(e){de=e},plugin:function(e){(Array.isArray(e)?e:[e]).forEach((e=>e(ut)))},magic:ee,store:function(t,n){if(at||(ot=e(ot),at=!0),void 0===n)return ot[t];ot[t]=n,"object"==typeof n&&null!==n&&n.hasOwnProperty("init")&&"function"==typeof n.init&&ot[t].init(),X(ot[t])},start:function(){var e;h&&_("Alpine has already been initialized on this page. Calling Alpine.start() more than once can cause problems."),h=!0,document.body||_("Unable to initialize. Trying to load Alpine before `<body>` is available. Did you forget to add `defer` in Alpine's `<script>` tag?"),d(document,"alpine:init"),d(document,"alpine:initializing"),T(),e=e=>O(e,p),C.push(e),$((e=>S(e))),N(((e,t)=>{xe(e,t).forEach((e=>e()))})),Array.from(document.querySelectorAll(v().join(","))).filter((e=>!w(e.parentElement,!0))).forEach((e=>{O(e)})),d(document,"alpine:initialized")},clone:function(e,t){t._x_dataStack||(t._x_dataStack=e._x_dataStack),We=!0,Ve=!0,He((()=>{!function(e){let t=!1;O(e,((e,n)=>{p(e,((e,r)=>{if(t&&function(e){return g().some((t=>e.matches(t)))}(e))return r();t=!0,n(e,r)}))}))}(t)})),We=!1,Ve=!1},cloneNode:function(e,t){Ke.forEach((n=>n(e,t))),We=!0,He((()=>{O(t,((e,t)=>{t(e,(()=>{}))}))})),We=!1},bound:function(e,t,n){return e._x_bindings&&void 0!==e._x_bindings[t]?e._x_bindings[t]:et(e,t,n)},$data:J,walk:p,data:function(e,t){ct[e]=t},bind:function(e,t){let n="function"!=typeof t?()=>t:t;return e instanceof Element?lt(e,n()):(st[e]=n,()=>{})}};function ft(e,t){const n=Object.create(null),r=e.split(",");for(let e=0;e<r.length;e++)n[r[e]]=!0;return t?e=>!!n[e.toLowerCase()]:e=>!!n[e]}var dt,pt=Object.freeze({}),_t=(Object.freeze([]),Object.prototype.hasOwnProperty),ht=(e,t)=>_t.call(e,t),xt=Array.isArray,mt=e=>"[object Map]"===bt(e),gt=e=>"symbol"==typeof e,vt=e=>null!==e&&"object"==typeof e,yt=Object.prototype.toString,bt=e=>yt.call(e),wt=e=>bt(e).slice(8,-1),Et=e=>"string"==typeof e&&"NaN"!==e&&"-"!==e[0]&&""+parseInt(e,10)===e,At=e=>{const t=Object.create(null);return n=>t[n]||(t[n]=e(n))},Ot=/-(\w)/g,St=(At((e=>e.replace(Ot,((e,t)=>t?t.toUpperCase():"")))),/\B([A-Z])/g),kt=(At((e=>e.replace(St,"-$1").toLowerCase())),At((e=>e.charAt(0).toUpperCase()+e.slice(1)))),jt=(At((e=>e?`on${kt(e)}`:"")),(e,t)=>e!==t&&(e==e||t==t)),Ct=new WeakMap,$t=[],Nt=Symbol("iterate"),Mt=Symbol("Map key iterate"),Lt=0;function Pt(e){const{deps:t}=e;if(t.length){for(let n=0;n<t.length;n++)t[n].delete(e);t.length=0}}var Rt=!0,Tt=[];function zt(){const e=Tt.pop();Rt=void 0===e||e}function Bt(e,t,n){if(!Rt||void 0===dt)return;let r=Ct.get(e);r||Ct.set(e,r=new Map);let i=r.get(n);i||r.set(n,i=new Set),i.has(dt)||(i.add(dt),dt.deps.push(i),dt.options.onTrack&&dt.options.onTrack({effect:dt,target:e,type:t,key:n}))}function It(e,t,n,r,i,o){const a=Ct.get(e);if(!a)return;const s=new Set,l=e=>{e&&e.forEach((e=>{(e!==dt||e.allowRecurse)&&s.add(e)}))};if("clear"===t)a.forEach(l);else if("length"===n&&xt(e))a.forEach(((e,t)=>{("length"===t||t>=r)&&l(e)}));else switch(void 0!==n&&l(a.get(n)),t){case"add":xt(e)?Et(n)&&l(a.get("length")):(l(a.get(Nt)),mt(e)&&l(a.get(Mt)));break;case"delete":xt(e)||(l(a.get(Nt)),mt(e)&&l(a.get(Mt)));break;case"set":mt(e)&&l(a.get(Nt))}s.forEach((a=>{a.options.onTrigger&&a.options.onTrigger({effect:a,target:e,key:n,type:t,newValue:r,oldValue:i,oldTarget:o}),a.options.scheduler?a.options.scheduler(a):a()}))}var Dt=ft("__proto__,__v_isRef,__isVue"),Ft=new Set(Object.getOwnPropertyNames(Symbol).map((e=>Symbol[e])).filter(gt)),qt=Ut(),Wt=Ut(!0),Jt=Kt();function Kt(){const e={};return["includes","indexOf","lastIndexOf"].forEach((t=>{e[t]=function(...e){const n=kn(this);for(let e=0,t=this.length;e<t;e++)Bt(n,"get",e+"");const r=n[t](...e);return-1===r||!1===r?n[t](...e.map(kn)):r}})),["push","pop","shift","unshift","splice"].forEach((t=>{e[t]=function(...e){Tt.push(Rt),Rt=!1;const n=kn(this)[t].apply(this,e);return zt(),n}})),e}function Ut(e=!1,t=!1){return function(n,r,i){if("__v_isReactive"===r)return!e;if("__v_isReadonly"===r)return e;if("__v_raw"===r&&i===(e?t?En:wn:t?bn:yn).get(n))return n;const o=xt(n);if(!e&&o&&ht(Jt,r))return Reflect.get(Jt,r,i);const a=Reflect.get(n,r,i);return(gt(r)?Ft.has(r):Dt(r))?a:(e||Bt(n,"get",r),t?a:jn(a)?o&&Et(r)?a:a.value:vt(a)?e?On(a):An(a):a)}}function Vt(e=!1){return function(t,n,r,i){let o=t[n];if(!e&&(r=kn(r),o=kn(o),!xt(t)&&jn(o)&&!jn(r)))return o.value=r,!0;const a=xt(t)&&Et(n)?Number(n)<t.length:ht(t,n),s=Reflect.set(t,n,r,i);return t===kn(i)&&(a?jt(r,o)&&It(t,"set",n,r,o):It(t,"add",n,r)),s}}var Ht={get:qt,set:Vt(),deleteProperty:function(e,t){const n=ht(e,t),r=e[t],i=Reflect.deleteProperty(e,t);return i&&n&&It(e,"delete",t,void 0,r),i},has:function(e,t){const n=Reflect.has(e,t);return gt(t)&&Ft.has(t)||Bt(e,"has",t),n},ownKeys:function(e){return Bt(e,"iterate",xt(e)?"length":Nt),Reflect.ownKeys(e)}},Zt={get:Wt,set:(e,t)=>(console.warn(`Set operation on key "${String(t)}" failed: target is readonly.`,e),!0),deleteProperty:(e,t)=>(console.warn(`Delete operation on key "${String(t)}" failed: target is readonly.`,e),!0)},Xt=e=>vt(e)?An(e):e,Yt=e=>vt(e)?On(e):e,Gt=e=>e,Qt=e=>Reflect.getPrototypeOf(e);function en(e,t,n=!1,r=!1){const i=kn(e=e.__v_raw),o=kn(t);t!==o&&!n&&Bt(i,"get",t),!n&&Bt(i,"get",o);const{has:a}=Qt(i),s=r?Gt:n?Yt:Xt;return a.call(i,t)?s(e.get(t)):a.call(i,o)?s(e.get(o)):void(e!==i&&e.get(t))}function tn(e,t=!1){const n=this.__v_raw,r=kn(n),i=kn(e);return e!==i&&!t&&Bt(r,"has",e),!t&&Bt(r,"has",i),e===i?n.has(e):n.has(e)||n.has(i)}function nn(e,t=!1){return e=e.__v_raw,!t&&Bt(kn(e),"iterate",Nt),Reflect.get(e,"size",e)}function rn(e){e=kn(e);const t=kn(this);return Qt(t).has.call(t,e)||(t.add(e),It(t,"add",e,e)),this}function on(e,t){t=kn(t);const n=kn(this),{has:r,get:i}=Qt(n);let o=r.call(n,e);o?vn(n,r,e):(e=kn(e),o=r.call(n,e));const a=i.call(n,e);return n.set(e,t),o?jt(t,a)&&It(n,"set",e,t,a):It(n,"add",e,t),this}function an(e){const t=kn(this),{has:n,get:r}=Qt(t);let i=n.call(t,e);i?vn(t,n,e):(e=kn(e),i=n.call(t,e));const o=r?r.call(t,e):void 0,a=t.delete(e);return i&&It(t,"delete",e,void 0,o),a}function sn(){const e=kn(this),t=0!==e.size,n=mt(e)?new Map(e):new Set(e),r=e.clear();return t&&It(e,"clear",void 0,void 0,n),r}function ln(e,t){return function(n,r){const i=this,o=i.__v_raw,a=kn(o),s=t?Gt:e?Yt:Xt;return!e&&Bt(a,"iterate",Nt),o.forEach(((e,t)=>n.call(r,s(e),s(t),i)))}}function cn(e,t,n){return function(...r){const i=this.__v_raw,o=kn(i),a=mt(o),s="entries"===e||e===Symbol.iterator&&a,l="keys"===e&&a,c=i[e](...r),u=n?Gt:t?Yt:Xt;return!t&&Bt(o,"iterate",l?Mt:Nt),{next(){const{value:e,done:t}=c.next();return t?{value:e,done:t}:{value:s?[u(e[0]),u(e[1])]:u(e),done:t}},[Symbol.iterator](){return this}}}}function un(e){return function(...t){{const n=t[0]?`on key "${t[0]}" `:"";console.warn(`${kt(e)} operation ${n}failed: target is readonly.`,kn(this))}return"delete"!==e&&this}}function fn(){const e={get(e){return en(this,e)},get size(){return nn(this)},has:tn,add:rn,set:on,delete:an,clear:sn,forEach:ln(!1,!1)},t={get(e){return en(this,e,!1,!0)},get size(){return nn(this)},has:tn,add:rn,set:on,delete:an,clear:sn,forEach:ln(!1,!0)},n={get(e){return en(this,e,!0)},get size(){return nn(this,!0)},has(e){return tn.call(this,e,!0)},add:un("add"),set:un("set"),delete:un("delete"),clear:un("clear"),forEach:ln(!0,!1)},r={get(e){return en(this,e,!0,!0)},get size(){return nn(this,!0)},has(e){return tn.call(this,e,!0)},add:un("add"),set:un("set"),delete:un("delete"),clear:un("clear"),forEach:ln(!0,!0)};return["keys","values","entries",Symbol.iterator].forEach((i=>{e[i]=cn(i,!1,!1),n[i]=cn(i,!0,!1),t[i]=cn(i,!1,!0),r[i]=cn(i,!0,!0)})),[e,n,t,r]}var[dn,pn,_n,hn]=fn();function xn(e,t){const n=t?e?hn:_n:e?pn:dn;return(t,r,i)=>"__v_isReactive"===r?!e:"__v_isReadonly"===r?e:"__v_raw"===r?t:Reflect.get(ht(n,r)&&r in t?n:t,r,i)}var mn={get:xn(!1,!1)},gn={get:xn(!0,!1)};function vn(e,t,n){const r=kn(n);if(r!==n&&t.call(e,r)){const t=wt(e);console.warn(`Reactive ${t} contains both the raw and reactive versions of the same object${"Map"===t?" as keys":""}, which can lead to inconsistencies. Avoid differentiating between the raw and reactive versions of an object and only use the reactive version if possible.`)}}var yn=new WeakMap,bn=new WeakMap,wn=new WeakMap,En=new WeakMap;function An(e){return e&&e.__v_isReadonly?e:Sn(e,!1,Ht,mn,yn)}function On(e){return Sn(e,!0,Zt,gn,wn)}function Sn(e,t,n,r,i){if(!vt(e))return console.warn(`value cannot be made reactive: ${String(e)}`),e;if(e.__v_raw&&(!t||!e.__v_isReactive))return e;const o=i.get(e);if(o)return o;const a=(s=e).__v_skip||!Object.isExtensible(s)?0:function(e){switch(e){case"Object":case"Array":return 1;case"Map":case"Set":case"WeakMap":case"WeakSet":return 2;default:return 0}}(wt(s));var s;if(0===a)return e;const l=new Proxy(e,2===a?r:n);return i.set(e,l),l}function kn(e){return e&&kn(e.__v_raw)||e}function jn(e){return Boolean(e&&!0===e.__v_isRef)}ee("nextTick",(()=>Le)),ee("dispatch",(e=>d.bind(d,e))),ee("watch",((e,{evaluateLater:t,effect:n})=>(r,i)=>{let o,a=t(r),s=!0,l=n((()=>a((e=>{JSON.stringify(e),s?o=e:queueMicrotask((()=>{i(e,o),o=e})),s=!1}))));e._x_effects.delete(l)})),ee("store",(function(){return ot})),ee("data",(e=>J(e))),ee("root",(e=>w(e))),ee("refs",(e=>(e._x_refs_proxy||(e._x_refs_proxy=V(function(e){let t=[],n=e;for(;n;)n._x_refs&&t.push(n._x_refs),n=n.parentNode;return t}(e))),e._x_refs_proxy)));var Cn={};function $n(e){return Cn[e]||(Cn[e]=0),++Cn[e]}function Nn(e,t,n){ee(t,(r=>_(`You can't use [$${t}] without first installing the "${e}" plugin here: https://alpinejs.dev/plugins/${n}`,r)))}ee("id",(e=>(t,n=null)=>{let r=function(e,t){return E(e,(e=>{if(e._x_ids&&e._x_ids[t])return!0}))}(e,t),i=r?r._x_ids[t]:$n(t);return n?`${t}-${i}-${n}`:`${t}-${i}`})),ee("el",(e=>e)),Nn("Focus","focus","focus"),Nn("Persist","persist","persist"),he("modelable",((e,{expression:t},{effect:n,evaluateLater:r,cleanup:i})=>{let o=r(t),a=()=>{let e;return o((t=>e=t)),e},s=r(`${t} = __placeholder`),l=e=>s((()=>{}),{scope:{__placeholder:e}}),c=a();l(c),queueMicrotask((()=>{if(!e._x_model)return;e._x_removeModelListeners.default();let t=e._x_model.get,n=e._x_model.set,r=rt({get:()=>t(),set(e){n(e)}},{get:()=>a(),set(e){l(e)}});i(r)}))})),he("teleport",((e,{modifiers:t,expression:n},{cleanup:r})=>{"template"!==e.tagName.toLowerCase()&&_("x-teleport can only be used on a <template> tag",e);let i=Ln(n),o=e.content.cloneNode(!0).firstElementChild;e._x_teleport=o,o._x_teleportBack=e,e.setAttribute("data-teleport-template",!0),o.setAttribute("data-teleport-target",!0),e._x_forwardEvents&&e._x_forwardEvents.forEach((t=>{o.addEventListener(t,(t=>{t.stopPropagation(),e.dispatchEvent(new t.constructor(t.type,t))}))})),K(o,{},e);let a=(e,t,n)=>{n.includes("prepend")?t.parentNode.insertBefore(e,t):n.includes("append")?t.parentNode.insertBefore(e,t.nextSibling):t.appendChild(e)};D((()=>{a(o,i,t),O(o),o._x_ignore=!0})),e._x_teleportPutBack=()=>{let r=Ln(n);D((()=>{a(e._x_teleport,r,t)}))},r((()=>o.remove()))}));var Mn=document.createElement("div");function Ln(e){let t=Je((()=>document.querySelector(e)),(()=>Mn))();return t||_(`Cannot find x-teleport element for selector: "${e}"`),t}var Pn=()=>{};function Rn(e,t,n,r){let i=e,o=e=>r(e),a={},s=(e,t)=>n=>t(e,n);if(n.includes("dot")&&(t=t.replace(/-/g,".")),n.includes("camel")&&(t=t.toLowerCase().replace(/-(\w)/g,((e,t)=>t.toUpperCase()))),n.includes("passive")&&(a.passive=!0),n.includes("capture")&&(a.capture=!0),n.includes("window")&&(i=window),n.includes("document")&&(i=document),n.includes("debounce")){let e=n[n.indexOf("debounce")+1]||"invalid-wait",t=Tn(e.split("ms")[0])?Number(e.split("ms")[0]):250;o=tt(o,t)}if(n.includes("throttle")){let e=n[n.indexOf("throttle")+1]||"invalid-wait",t=Tn(e.split("ms")[0])?Number(e.split("ms")[0]):250;o=nt(o,t)}return n.includes("prevent")&&(o=s(o,((e,t)=>{t.preventDefault(),e(t)}))),n.includes("stop")&&(o=s(o,((e,t)=>{t.stopPropagation(),e(t)}))),n.includes("self")&&(o=s(o,((t,n)=>{n.target===e&&t(n)}))),(n.includes("away")||n.includes("outside"))&&(i=document,o=s(o,((t,n)=>{e.contains(n.target)||!1!==n.target.isConnected&&(e.offsetWidth<1&&e.offsetHeight<1||!1!==e._x_isShown&&t(n))}))),n.includes("once")&&(o=s(o,((e,n)=>{e(n),i.removeEventListener(t,o,a)}))),o=s(o,((e,r)=>{(function(e){return["keydown","keyup"].includes(e)})(t)&&function(e,t){let n=t.filter((e=>!["window","document","prevent","stop","once","capture"].includes(e)));if(n.includes("debounce")){let e=n.indexOf("debounce");n.splice(e,Tn((n[e+1]||"invalid-wait").split("ms")[0])?2:1)}if(n.includes("throttle")){let e=n.indexOf("throttle");n.splice(e,Tn((n[e+1]||"invalid-wait").split("ms")[0])?2:1)}if(0===n.length)return!1;if(1===n.length&&zn(e.key).includes(n[0]))return!1;const r=["ctrl","shift","alt","meta","cmd","super"].filter((e=>n.includes(e)));return n=n.filter((e=>!r.includes(e))),!(r.length>0&&r.filter((t=>("cmd"!==t&&"super"!==t||(t="meta"),e[`${t}Key`]))).length===r.length&&zn(e.key).includes(n[0]))}(r,n)||e(r)})),i.addEventListener(t,o,a),()=>{i.removeEventListener(t,o,a)}}function Tn(e){return!Array.isArray(e)&&!isNaN(e)}function zn(e){if(!e)return[];var t;e=[" ","_"].includes(t=e)?t:t.replace(/([a-z])([A-Z])/g,"$1-$2").replace(/[_\s]/,"-").toLowerCase();let n={ctrl:"control",slash:"/",space:" ",spacebar:" ",cmd:"meta",esc:"escape",up:"arrow-up",down:"arrow-down",left:"arrow-left",right:"arrow-right",period:".",equal:"=",minus:"-",underscore:"_"};return n[e]=e,Object.keys(n).map((t=>{if(n[t]===e)return t})).filter((e=>e))}function Bn(e){let t=e?parseFloat(e):null;return n=t,Array.isArray(n)||isNaN(n)?e:t;var n}function In(e){return null!==e&&"object"==typeof e&&"function"==typeof e.get&&"function"==typeof e.set}Pn.inline=(e,{modifiers:t},{cleanup:n})=>{t.includes("self")?e._x_ignoreSelf=!0:e._x_ignore=!0,n((()=>{t.includes("self")?delete e._x_ignoreSelf:delete e._x_ignore}))},he("ignore",Pn),he("effect",Je(((e,{expression:t},{effect:n})=>{n(se(e,t))}))),he("model",((e,{modifiers:t,expression:n},{effect:r,cleanup:i})=>{let o=e;t.includes("parent")&&(o=e.parentNode);let a,s=se(o,n);a="string"==typeof n?se(o,`${n} = __placeholder`):"function"==typeof n&&"string"==typeof n()?se(o,`${n()} = __placeholder`):()=>{};let l=()=>{let e;return s((t=>e=t)),In(e)?e.get():e},c=e=>{let t;s((e=>t=e)),In(t)?t.set(e):a((()=>{}),{scope:{__placeholder:e}})};"string"==typeof n&&"radio"===e.type&&D((()=>{e.hasAttribute("name")||e.setAttribute("name",n)}));var u="select"===e.tagName.toLowerCase()||["checkbox","radio"].includes(e.type)||t.includes("lazy")?"change":"input";let f=We?()=>{}:Rn(e,u,t,(n=>{c(function(e,t,n,r){return D((()=>{if(n instanceof CustomEvent&&void 0!==n.detail)return null!==n.detail&&void 0!==n.detail?n.detail:n.target.value;if("checkbox"===e.type){if(Array.isArray(r)){let e=null;return e=t.includes("number")?Bn(n.target.value):t.includes("boolean")?Ge(n.target.value):n.target.value,n.target.checked?r.concat([e]):r.filter((t=>!(t==e)))}return n.target.checked}return"select"===e.tagName.toLowerCase()&&e.multiple?t.includes("number")?Array.from(n.target.selectedOptions).map((e=>Bn(e.value||e.text))):t.includes("boolean")?Array.from(n.target.selectedOptions).map((e=>Ge(e.value||e.text))):Array.from(n.target.selectedOptions).map((e=>e.value||e.text)):t.includes("number")?Bn(n.target.value):t.includes("boolean")?Ge(n.target.value):t.includes("trim")?n.target.value.trim():n.target.value}))}(e,t,n,l()))}));if(t.includes("fill")&&([null,""].includes(l())||"checkbox"===e.type&&Array.isArray(l()))&&e.dispatchEvent(new Event(u,{})),e._x_removeModelListeners||(e._x_removeModelListeners={}),e._x_removeModelListeners.default=f,i((()=>e._x_removeModelListeners.default())),e.form){let t=Rn(e.form,"reset",[],(t=>{Le((()=>e._x_model&&e._x_model.set(e.value)))}));i((()=>t()))}e._x_model={get:()=>l(),set(e){c(e)}},e._x_forceModelUpdate=t=>{void 0===t&&"string"==typeof n&&n.match(/\./)&&(t=""),window.fromModel=!0,D((()=>Ze(e,"value",t))),delete window.fromModel},r((()=>{let n=l();t.includes("unintrusive")&&document.activeElement.isSameNode(e)||e._x_forceModelUpdate(n)}))})),he("cloak",(e=>queueMicrotask((()=>D((()=>e.removeAttribute(pe("cloak")))))))),b((()=>`[${pe("init")}]`)),he("init",Je(((e,{expression:t},{evaluate:n})=>"string"==typeof t?!!t.trim()&&n(t,{},!1):n(t,{},!1)))),he("text",((e,{expression:t},{effect:n,evaluateLater:r})=>{let i=r(t);n((()=>{i((t=>{D((()=>{e.textContent=t}))}))}))})),he("html",((e,{expression:t},{effect:n,evaluateLater:r})=>{let i=r(t);n((()=>{i((t=>{D((()=>{e.innerHTML=t,e._x_ignoreSelf=!0,O(e),delete e._x_ignoreSelf}))}))}))})),Oe(we(":",pe("bind:")));var Dn=(e,{value:t,modifiers:n,expression:r,original:i},{effect:o})=>{if(!t){let t={};return a=t,Object.entries(st).forEach((([e,t])=>{Object.defineProperty(a,e,{get:()=>(...e)=>t(...e)})})),void se(e,r)((t=>{lt(e,t,i)}),{scope:t})}var a;if("key"===t)return function(e,t){e._x_keyExpression=t}(e,r);if(e._x_inlineBindings&&e._x_inlineBindings[t]&&e._x_inlineBindings[t].extract)return;let s=se(e,r);o((()=>s((i=>{void 0===i&&"string"==typeof r&&r.match(/\./)&&(i=""),D((()=>Ze(e,t,i,n)))}))))};function Fn(e,t,n,r){let i={};return/^\[.*\]$/.test(e.item)&&Array.isArray(t)?e.item.replace("[","").replace("]","").split(",").map((e=>e.trim())).forEach(((e,n)=>{i[e]=t[n]})):/^\{.*\}$/.test(e.item)&&!Array.isArray(t)&&"object"==typeof t?e.item.replace("{","").replace("}","").split(",").map((e=>e.trim())).forEach((e=>{i[e]=t[e]})):i[e.item]=t,e.index&&(i[e.index]=n),e.collection&&(i[e.collection]=r),i}function qn(){}function Wn(e,t,n){he(t,(r=>_(`You can't use [x-${t}] without first installing the "${e}" plugin here: https://alpinejs.dev/plugins/${n}`,r)))}Dn.inline=(e,{value:t,modifiers:n,expression:r})=>{t&&(e._x_inlineBindings||(e._x_inlineBindings={}),e._x_inlineBindings[t]={expression:r,extract:!1})},he("bind",Dn),y((()=>`[${pe("data")}]`)),he("data",((t,{expression:n},{cleanup:r})=>{if(function(e){return!!We&&(!!Ve||e.hasAttribute("data-has-alpine-state"))}(t))return;n=""===n?"{}":n;let i={};te(i,t);let o={};var a,s;a=o,s=i,Object.entries(ct).forEach((([e,t])=>{Object.defineProperty(a,e,{get:()=>(...e)=>t.bind(s)(...e),enumerable:!1})}));let l=ae(t,n,{scope:o});void 0!==l&&!0!==l||(l={}),te(l,t);let c=e(l);X(c);let u=K(t,c);c.init&&ae(t,c.init),r((()=>{c.destroy&&ae(t,c.destroy),u()}))})),Ue(((e,t)=>{e._x_dataStack&&(t._x_dataStack=e._x_dataStack,t.setAttribute("data-has-alpine-state",!0))})),he("show",((e,{modifiers:t,expression:n},{effect:r})=>{let i=se(e,n);e._x_doHide||(e._x_doHide=()=>{D((()=>{e.style.setProperty("display","none",t.includes("important")?"important":void 0)}))}),e._x_doShow||(e._x_doShow=()=>{D((()=>{1===e.style.length&&"none"===e.style.display?e.removeAttribute("style"):e.style.removeProperty("display")}))});let o,a=()=>{e._x_doHide(),e._x_isShown=!1},s=()=>{e._x_doShow(),e._x_isShown=!0},l=()=>setTimeout(s),c=Be((e=>e?s():a()),(t=>{"function"==typeof e._x_toggleAndCascadeWithTransitions?e._x_toggleAndCascadeWithTransitions(e,t,s,a):t?l():a()})),u=!0;r((()=>i((e=>{(u||e!==o)&&(t.includes("immediate")&&(e?l():a()),c(e),o=e,u=!1)}))))})),he("for",((t,{expression:n},{effect:r,cleanup:i})=>{let o=function(e){let t=/,([^,\}\]]*)(?:,([^,\}\]]*))?$/,n=e.match(/([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/);if(!n)return;let r={};r.items=n[2].trim();let i=n[1].replace(/^\s*\(|\)\s*$/g,"").trim(),o=i.match(t);return o?(r.item=i.replace(t,"").trim(),r.index=o[1].trim(),o[2]&&(r.collection=o[2].trim())):r.item=i,r}(n),a=se(t,o.items),s=se(t,t._x_keyExpression||"index");t._x_prevKeys=[],t._x_lookup={},r((()=>function(t,n,r,i){let o=t;r((r=>{var a;a=r,!Array.isArray(a)&&!isNaN(a)&&r>=0&&(r=Array.from(Array(r).keys(),(e=>e+1))),void 0===r&&(r=[]);let s=t._x_lookup,c=t._x_prevKeys,u=[],f=[];if("object"!=typeof(d=r)||Array.isArray(d))for(let e=0;e<r.length;e++){let t=Fn(n,r[e],e,r);i((e=>f.push(e)),{scope:{index:e,...t}}),u.push(t)}else r=Object.entries(r).map((([e,t])=>{let o=Fn(n,t,e,r);i((e=>f.push(e)),{scope:{index:e,...o}}),u.push(o)}));var d;let p=[],h=[],x=[],m=[];for(let e=0;e<c.length;e++){let t=c[e];-1===f.indexOf(t)&&x.push(t)}c=c.filter((e=>!x.includes(e)));let g="template";for(let e=0;e<f.length;e++){let t=f[e],n=c.indexOf(t);if(-1===n)c.splice(e,0,t),p.push([g,e]);else if(n!==e){let t=c.splice(e,1)[0],r=c.splice(n-1,1)[0];c.splice(e,0,r),c.splice(n,0,t),h.push([t,r])}else m.push(t);g=t}for(let e=0;e<x.length;e++){let t=x[e];s[t]._x_effects&&s[t]._x_effects.forEach(l),s[t].remove(),s[t]=null,delete s[t]}for(let e=0;e<h.length;e++){let[t,n]=h[e],r=s[t],i=s[n],a=document.createElement("div");D((()=>{i||_('x-for ":key" is undefined or invalid',o),i.after(a),r.after(i),i._x_currentIfEl&&i.after(i._x_currentIfEl),a.before(r),r._x_currentIfEl&&r.after(r._x_currentIfEl),a.remove()})),i._x_refreshXForScope(u[f.indexOf(n)])}for(let t=0;t<p.length;t++){let[n,r]=p[t],i="template"===n?o:s[n];i._x_currentIfEl&&(i=i._x_currentIfEl);let a=u[r],l=f[r],c=document.importNode(o.content,!0).firstElementChild,d=e(a);K(c,d,o),c._x_refreshXForScope=e=>{Object.entries(e).forEach((([e,t])=>{d[e]=t}))},D((()=>{i.after(c),O(c)})),"object"==typeof l&&_("x-for key cannot be an object, it must be a string or an integer",o),s[l]=c}for(let e=0;e<m.length;e++)s[m[e]]._x_refreshXForScope(u[f.indexOf(m[e])]);o._x_prevKeys=f}))}(t,o,a,s))),i((()=>{Object.values(t._x_lookup).forEach((e=>e.remove())),delete t._x_prevKeys,delete t._x_lookup}))})),qn.inline=(e,{expression:t},{cleanup:n})=>{let r=w(e);r._x_refs||(r._x_refs={}),r._x_refs[t]=e,n((()=>delete r._x_refs[t]))},he("ref",qn),he("if",((e,{expression:t},{effect:n,cleanup:r})=>{"template"!==e.tagName.toLowerCase()&&_("x-if can only be used on a <template> tag",e);let i=se(e,t);n((()=>i((t=>{t?(()=>{if(e._x_currentIfEl)return e._x_currentIfEl;let t=e.content.cloneNode(!0).firstElementChild;K(t,{},e),D((()=>{e.after(t),O(t)})),e._x_currentIfEl=t,e._x_undoIf=()=>{p(t,(e=>{e._x_effects&&e._x_effects.forEach(l)})),t.remove(),delete e._x_currentIfEl}})():e._x_undoIf&&(e._x_undoIf(),delete e._x_undoIf)})))),r((()=>e._x_undoIf&&e._x_undoIf()))})),he("id",((e,{expression:t},{evaluate:n})=>{n(t).forEach((t=>function(e,t){e._x_ids||(e._x_ids={}),e._x_ids[t]||(e._x_ids[t]=$n(t))}(e,t)))})),Oe(we("@",pe("on:"))),he("on",Je(((e,{value:t,modifiers:n,expression:r},{cleanup:i})=>{let o=r?se(e,r):()=>{};"template"===e.tagName.toLowerCase()&&(e._x_forwardEvents||(e._x_forwardEvents=[]),e._x_forwardEvents.includes(t)||e._x_forwardEvents.push(t));let a=Rn(e,t,n,(e=>{o((()=>{}),{scope:{$event:e},params:[e]})}));i((()=>a()))}))),Wn("Collapse","collapse","collapse"),Wn("Intersect","intersect","intersect"),Wn("Focus","trap","focus"),Wn("Mask","mask","mask"),ut.setEvaluator(ce),ut.setReactivityEngine({reactive:An,effect:function(e,t=pt){(function(e){return e&&!0===e._isEffect})(e)&&(e=e.raw);const n=function(e,t){const n=function(){if(!n.active)return e();if(!$t.includes(n)){Pt(n);try{return Tt.push(Rt),Rt=!0,$t.push(n),dt=n,e()}finally{$t.pop(),zt(),dt=$t[$t.length-1]}}};return n.id=Lt++,n.allowRecurse=!!t.allowRecurse,n._isEffect=!0,n.active=!0,n.raw=e,n.deps=[],n.options=t,n}(e,t);return t.lazy||n(),n},release:function(e){e.active&&(Pt(e),e.options.onStop&&e.options.onStop(),e.active=!1)},raw:kn});var Jn=ut;window.Alpine=Jn})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/alpinejs/dist/module.esm.js":
+/*!**************************************************!*\
+  !*** ./node_modules/alpinejs/dist/module.esm.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ module_default)
+/* harmony export */ });
+// packages/alpinejs/src/scheduler.js
+var flushPending = false;
+var flushing = false;
+var queue = [];
+var lastFlushedIndex = -1;
+function scheduler(callback) {
+  queueJob(callback);
+}
+function queueJob(job) {
+  if (!queue.includes(job))
+    queue.push(job);
+  queueFlush();
+}
+function dequeueJob(job) {
+  let index = queue.indexOf(job);
+  if (index !== -1 && index > lastFlushedIndex)
+    queue.splice(index, 1);
+}
+function queueFlush() {
+  if (!flushing && !flushPending) {
+    flushPending = true;
+    queueMicrotask(flushJobs);
+  }
+}
+function flushJobs() {
+  flushPending = false;
+  flushing = true;
+  for (let i = 0; i < queue.length; i++) {
+    queue[i]();
+    lastFlushedIndex = i;
+  }
+  queue.length = 0;
+  lastFlushedIndex = -1;
+  flushing = false;
+}
+
+// packages/alpinejs/src/reactivity.js
+var reactive;
+var effect;
+var release;
+var raw;
+var shouldSchedule = true;
+function disableEffectScheduling(callback) {
+  shouldSchedule = false;
+  callback();
+  shouldSchedule = true;
+}
+function setReactivityEngine(engine) {
+  reactive = engine.reactive;
+  release = engine.release;
+  effect = (callback) => engine.effect(callback, { scheduler: (task) => {
+    if (shouldSchedule) {
+      scheduler(task);
+    } else {
+      task();
+    }
+  } });
+  raw = engine.raw;
+}
+function overrideEffect(override) {
+  effect = override;
+}
+function elementBoundEffect(el) {
+  let cleanup2 = () => {
+  };
+  let wrappedEffect = (callback) => {
+    let effectReference = effect(callback);
+    if (!el._x_effects) {
+      el._x_effects = /* @__PURE__ */ new Set();
+      el._x_runEffects = () => {
+        el._x_effects.forEach((i) => i());
+      };
+    }
+    el._x_effects.add(effectReference);
+    cleanup2 = () => {
+      if (effectReference === void 0)
+        return;
+      el._x_effects.delete(effectReference);
+      release(effectReference);
+    };
+    return effectReference;
+  };
+  return [wrappedEffect, () => {
+    cleanup2();
+  }];
+}
+
+// packages/alpinejs/src/utils/dispatch.js
+function dispatch(el, name, detail = {}) {
+  el.dispatchEvent(
+    new CustomEvent(name, {
+      detail,
+      bubbles: true,
+      // Allows events to pass the shadow DOM barrier.
+      composed: true,
+      cancelable: true
+    })
+  );
+}
+
+// packages/alpinejs/src/utils/walk.js
+function walk(el, callback) {
+  if (typeof ShadowRoot === "function" && el instanceof ShadowRoot) {
+    Array.from(el.children).forEach((el2) => walk(el2, callback));
+    return;
+  }
+  let skip = false;
+  callback(el, () => skip = true);
+  if (skip)
+    return;
+  let node = el.firstElementChild;
+  while (node) {
+    walk(node, callback, false);
+    node = node.nextElementSibling;
+  }
+}
+
+// packages/alpinejs/src/utils/warn.js
+function warn(message, ...args) {
+  console.warn(`Alpine Warning: ${message}`, ...args);
+}
+
+// packages/alpinejs/src/lifecycle.js
+var started = false;
+function start() {
+  if (started)
+    warn("Alpine has already been initialized on this page. Calling Alpine.start() more than once can cause problems.");
+  started = true;
+  if (!document.body)
+    warn("Unable to initialize. Trying to load Alpine before `<body>` is available. Did you forget to add `defer` in Alpine's `<script>` tag?");
+  dispatch(document, "alpine:init");
+  dispatch(document, "alpine:initializing");
+  startObservingMutations();
+  onElAdded((el) => initTree(el, walk));
+  onElRemoved((el) => destroyTree(el));
+  onAttributesAdded((el, attrs) => {
+    directives(el, attrs).forEach((handle) => handle());
+  });
+  let outNestedComponents = (el) => !closestRoot(el.parentElement, true);
+  Array.from(document.querySelectorAll(allSelectors().join(","))).filter(outNestedComponents).forEach((el) => {
+    initTree(el);
+  });
+  dispatch(document, "alpine:initialized");
+}
+var rootSelectorCallbacks = [];
+var initSelectorCallbacks = [];
+function rootSelectors() {
+  return rootSelectorCallbacks.map((fn) => fn());
+}
+function allSelectors() {
+  return rootSelectorCallbacks.concat(initSelectorCallbacks).map((fn) => fn());
+}
+function addRootSelector(selectorCallback) {
+  rootSelectorCallbacks.push(selectorCallback);
+}
+function addInitSelector(selectorCallback) {
+  initSelectorCallbacks.push(selectorCallback);
+}
+function closestRoot(el, includeInitSelectors = false) {
+  return findClosest(el, (element) => {
+    const selectors = includeInitSelectors ? allSelectors() : rootSelectors();
+    if (selectors.some((selector) => element.matches(selector)))
+      return true;
+  });
+}
+function findClosest(el, callback) {
+  if (!el)
+    return;
+  if (callback(el))
+    return el;
+  if (el._x_teleportBack)
+    el = el._x_teleportBack;
+  if (!el.parentElement)
+    return;
+  return findClosest(el.parentElement, callback);
+}
+function isRoot(el) {
+  return rootSelectors().some((selector) => el.matches(selector));
+}
+var initInterceptors = [];
+function interceptInit(callback) {
+  initInterceptors.push(callback);
+}
+function initTree(el, walker = walk, intercept = () => {
+}) {
+  deferHandlingDirectives(() => {
+    walker(el, (el2, skip) => {
+      intercept(el2, skip);
+      initInterceptors.forEach((i) => i(el2, skip));
+      directives(el2, el2.attributes).forEach((handle) => handle());
+      el2._x_ignore && skip();
+    });
+  });
+}
+function destroyTree(root) {
+  walk(root, (el) => {
+    cleanupAttributes(el);
+    cleanupElement(el);
+  });
+}
+
+// packages/alpinejs/src/mutation.js
+var onAttributeAddeds = [];
+var onElRemoveds = [];
+var onElAddeds = [];
+function onElAdded(callback) {
+  onElAddeds.push(callback);
+}
+function onElRemoved(el, callback) {
+  if (typeof callback === "function") {
+    if (!el._x_cleanups)
+      el._x_cleanups = [];
+    el._x_cleanups.push(callback);
+  } else {
+    callback = el;
+    onElRemoveds.push(callback);
+  }
+}
+function onAttributesAdded(callback) {
+  onAttributeAddeds.push(callback);
+}
+function onAttributeRemoved(el, name, callback) {
+  if (!el._x_attributeCleanups)
+    el._x_attributeCleanups = {};
+  if (!el._x_attributeCleanups[name])
+    el._x_attributeCleanups[name] = [];
+  el._x_attributeCleanups[name].push(callback);
+}
+function cleanupAttributes(el, names) {
+  if (!el._x_attributeCleanups)
+    return;
+  Object.entries(el._x_attributeCleanups).forEach(([name, value]) => {
+    if (names === void 0 || names.includes(name)) {
+      value.forEach((i) => i());
+      delete el._x_attributeCleanups[name];
+    }
+  });
+}
+function cleanupElement(el) {
+  if (el._x_cleanups) {
+    while (el._x_cleanups.length)
+      el._x_cleanups.pop()();
+  }
+}
+var observer = new MutationObserver(onMutate);
+var currentlyObserving = false;
+function startObservingMutations() {
+  observer.observe(document, { subtree: true, childList: true, attributes: true, attributeOldValue: true });
+  currentlyObserving = true;
+}
+function stopObservingMutations() {
+  flushObserver();
+  observer.disconnect();
+  currentlyObserving = false;
+}
+var recordQueue = [];
+var willProcessRecordQueue = false;
+function flushObserver() {
+  recordQueue = recordQueue.concat(observer.takeRecords());
+  if (recordQueue.length && !willProcessRecordQueue) {
+    willProcessRecordQueue = true;
+    queueMicrotask(() => {
+      processRecordQueue();
+      willProcessRecordQueue = false;
+    });
+  }
+}
+function processRecordQueue() {
+  onMutate(recordQueue);
+  recordQueue.length = 0;
+}
+function mutateDom(callback) {
+  if (!currentlyObserving)
+    return callback();
+  stopObservingMutations();
+  let result = callback();
+  startObservingMutations();
+  return result;
+}
+var isCollecting = false;
+var deferredMutations = [];
+function deferMutations() {
+  isCollecting = true;
+}
+function flushAndStopDeferringMutations() {
+  isCollecting = false;
+  onMutate(deferredMutations);
+  deferredMutations = [];
+}
+function onMutate(mutations) {
+  if (isCollecting) {
+    deferredMutations = deferredMutations.concat(mutations);
+    return;
+  }
+  let addedNodes = [];
+  let removedNodes = [];
+  let addedAttributes = /* @__PURE__ */ new Map();
+  let removedAttributes = /* @__PURE__ */ new Map();
+  for (let i = 0; i < mutations.length; i++) {
+    if (mutations[i].target._x_ignoreMutationObserver)
+      continue;
+    if (mutations[i].type === "childList") {
+      mutations[i].addedNodes.forEach((node) => node.nodeType === 1 && addedNodes.push(node));
+      mutations[i].removedNodes.forEach((node) => node.nodeType === 1 && removedNodes.push(node));
+    }
+    if (mutations[i].type === "attributes") {
+      let el = mutations[i].target;
+      let name = mutations[i].attributeName;
+      let oldValue = mutations[i].oldValue;
+      let add2 = () => {
+        if (!addedAttributes.has(el))
+          addedAttributes.set(el, []);
+        addedAttributes.get(el).push({ name, value: el.getAttribute(name) });
+      };
+      let remove = () => {
+        if (!removedAttributes.has(el))
+          removedAttributes.set(el, []);
+        removedAttributes.get(el).push(name);
+      };
+      if (el.hasAttribute(name) && oldValue === null) {
+        add2();
+      } else if (el.hasAttribute(name)) {
+        remove();
+        add2();
+      } else {
+        remove();
+      }
+    }
+  }
+  removedAttributes.forEach((attrs, el) => {
+    cleanupAttributes(el, attrs);
+  });
+  addedAttributes.forEach((attrs, el) => {
+    onAttributeAddeds.forEach((i) => i(el, attrs));
+  });
+  for (let node of removedNodes) {
+    if (addedNodes.includes(node))
+      continue;
+    onElRemoveds.forEach((i) => i(node));
+    destroyTree(node);
+  }
+  addedNodes.forEach((node) => {
+    node._x_ignoreSelf = true;
+    node._x_ignore = true;
+  });
+  for (let node of addedNodes) {
+    if (removedNodes.includes(node))
+      continue;
+    if (!node.isConnected)
+      continue;
+    delete node._x_ignoreSelf;
+    delete node._x_ignore;
+    onElAddeds.forEach((i) => i(node));
+    node._x_ignore = true;
+    node._x_ignoreSelf = true;
+  }
+  addedNodes.forEach((node) => {
+    delete node._x_ignoreSelf;
+    delete node._x_ignore;
+  });
+  addedNodes = null;
+  removedNodes = null;
+  addedAttributes = null;
+  removedAttributes = null;
+}
+
+// packages/alpinejs/src/scope.js
+function scope(node) {
+  return mergeProxies(closestDataStack(node));
+}
+function addScopeToNode(node, data2, referenceNode) {
+  node._x_dataStack = [data2, ...closestDataStack(referenceNode || node)];
+  return () => {
+    node._x_dataStack = node._x_dataStack.filter((i) => i !== data2);
+  };
+}
+function closestDataStack(node) {
+  if (node._x_dataStack)
+    return node._x_dataStack;
+  if (typeof ShadowRoot === "function" && node instanceof ShadowRoot) {
+    return closestDataStack(node.host);
+  }
+  if (!node.parentNode) {
+    return [];
+  }
+  return closestDataStack(node.parentNode);
+}
+function mergeProxies(objects) {
+  return new Proxy({ objects }, mergeProxyTrap);
+}
+var mergeProxyTrap = {
+  ownKeys({ objects }) {
+    return Array.from(
+      new Set(objects.flatMap((i) => Object.keys(i)))
+    );
+  },
+  has({ objects }, name) {
+    if (name == Symbol.unscopables)
+      return false;
+    return objects.some(
+      (obj) => Object.prototype.hasOwnProperty.call(obj, name)
+    );
+  },
+  get({ objects }, name, thisProxy) {
+    if (name == "toJSON")
+      return collapseProxies;
+    return Reflect.get(
+      objects.find(
+        (obj) => Object.prototype.hasOwnProperty.call(obj, name)
+      ) || {},
+      name,
+      thisProxy
+    );
+  },
+  set({ objects }, name, value, thisProxy) {
+    const target = objects.find(
+      (obj) => Object.prototype.hasOwnProperty.call(obj, name)
+    ) || objects[objects.length - 1];
+    const descriptor = Object.getOwnPropertyDescriptor(target, name);
+    if (descriptor?.set && descriptor?.get)
+      return Reflect.set(target, name, value, thisProxy);
+    return Reflect.set(target, name, value);
+  }
+};
+function collapseProxies() {
+  let keys = Reflect.ownKeys(this);
+  return keys.reduce((acc, key) => {
+    acc[key] = Reflect.get(this, key);
+    return acc;
+  }, {});
+}
+
+// packages/alpinejs/src/interceptor.js
+function initInterceptors2(data2) {
+  let isObject2 = (val) => typeof val === "object" && !Array.isArray(val) && val !== null;
+  let recurse = (obj, basePath = "") => {
+    Object.entries(Object.getOwnPropertyDescriptors(obj)).forEach(([key, { value, enumerable }]) => {
+      if (enumerable === false || value === void 0)
+        return;
+      let path = basePath === "" ? key : `${basePath}.${key}`;
+      if (typeof value === "object" && value !== null && value._x_interceptor) {
+        obj[key] = value.initialize(data2, path, key);
+      } else {
+        if (isObject2(value) && value !== obj && !(value instanceof Element)) {
+          recurse(value, path);
+        }
+      }
+    });
+  };
+  return recurse(data2);
+}
+function interceptor(callback, mutateObj = () => {
+}) {
+  let obj = {
+    initialValue: void 0,
+    _x_interceptor: true,
+    initialize(data2, path, key) {
+      return callback(this.initialValue, () => get(data2, path), (value) => set(data2, path, value), path, key);
+    }
+  };
+  mutateObj(obj);
+  return (initialValue) => {
+    if (typeof initialValue === "object" && initialValue !== null && initialValue._x_interceptor) {
+      let initialize = obj.initialize.bind(obj);
+      obj.initialize = (data2, path, key) => {
+        let innerValue = initialValue.initialize(data2, path, key);
+        obj.initialValue = innerValue;
+        return initialize(data2, path, key);
+      };
+    } else {
+      obj.initialValue = initialValue;
+    }
+    return obj;
+  };
+}
+function get(obj, path) {
+  return path.split(".").reduce((carry, segment) => carry[segment], obj);
+}
+function set(obj, path, value) {
+  if (typeof path === "string")
+    path = path.split(".");
+  if (path.length === 1)
+    obj[path[0]] = value;
+  else if (path.length === 0)
+    throw error;
+  else {
+    if (obj[path[0]])
+      return set(obj[path[0]], path.slice(1), value);
+    else {
+      obj[path[0]] = {};
+      return set(obj[path[0]], path.slice(1), value);
+    }
+  }
+}
+
+// packages/alpinejs/src/magics.js
+var magics = {};
+function magic(name, callback) {
+  magics[name] = callback;
+}
+function injectMagics(obj, el) {
+  Object.entries(magics).forEach(([name, callback]) => {
+    let memoizedUtilities = null;
+    function getUtilities() {
+      if (memoizedUtilities) {
+        return memoizedUtilities;
+      } else {
+        let [utilities, cleanup2] = getElementBoundUtilities(el);
+        memoizedUtilities = { interceptor, ...utilities };
+        onElRemoved(el, cleanup2);
+        return memoizedUtilities;
+      }
+    }
+    Object.defineProperty(obj, `$${name}`, {
+      get() {
+        return callback(el, getUtilities());
+      },
+      enumerable: false
+    });
+  });
+  return obj;
+}
+
+// packages/alpinejs/src/utils/error.js
+function tryCatch(el, expression, callback, ...args) {
+  try {
+    return callback(...args);
+  } catch (e) {
+    handleError(e, el, expression);
+  }
+}
+function handleError(error2, el, expression = void 0) {
+  Object.assign(error2, { el, expression });
+  console.warn(`Alpine Expression Error: ${error2.message}
+
+${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
+  setTimeout(() => {
+    throw error2;
+  }, 0);
+}
+
+// packages/alpinejs/src/evaluator.js
+var shouldAutoEvaluateFunctions = true;
+function dontAutoEvaluateFunctions(callback) {
+  let cache = shouldAutoEvaluateFunctions;
+  shouldAutoEvaluateFunctions = false;
+  let result = callback();
+  shouldAutoEvaluateFunctions = cache;
+  return result;
+}
+function evaluate(el, expression, extras = {}) {
+  let result;
+  evaluateLater(el, expression)((value) => result = value, extras);
+  return result;
+}
+function evaluateLater(...args) {
+  return theEvaluatorFunction(...args);
+}
+var theEvaluatorFunction = normalEvaluator;
+function setEvaluator(newEvaluator) {
+  theEvaluatorFunction = newEvaluator;
+}
+function normalEvaluator(el, expression) {
+  let overriddenMagics = {};
+  injectMagics(overriddenMagics, el);
+  let dataStack = [overriddenMagics, ...closestDataStack(el)];
+  let evaluator = typeof expression === "function" ? generateEvaluatorFromFunction(dataStack, expression) : generateEvaluatorFromString(dataStack, expression, el);
+  return tryCatch.bind(null, el, expression, evaluator);
+}
+function generateEvaluatorFromFunction(dataStack, func) {
+  return (receiver = () => {
+  }, { scope: scope2 = {}, params = [] } = {}) => {
+    let result = func.apply(mergeProxies([scope2, ...dataStack]), params);
+    runIfTypeOfFunction(receiver, result);
+  };
+}
+var evaluatorMemo = {};
+function generateFunctionFromString(expression, el) {
+  if (evaluatorMemo[expression]) {
+    return evaluatorMemo[expression];
+  }
+  let AsyncFunction = Object.getPrototypeOf(async function() {
+  }).constructor;
+  let rightSideSafeExpression = /^[\n\s]*if.*\(.*\)/.test(expression.trim()) || /^(let|const)\s/.test(expression.trim()) ? `(async()=>{ ${expression} })()` : expression;
+  const safeAsyncFunction = () => {
+    try {
+      let func2 = new AsyncFunction(
+        ["__self", "scope"],
+        `with (scope) { __self.result = ${rightSideSafeExpression} }; __self.finished = true; return __self.result;`
+      );
+      Object.defineProperty(func2, "name", {
+        value: `[Alpine] ${expression}`
+      });
+      return func2;
+    } catch (error2) {
+      handleError(error2, el, expression);
+      return Promise.resolve();
+    }
+  };
+  let func = safeAsyncFunction();
+  evaluatorMemo[expression] = func;
+  return func;
+}
+function generateEvaluatorFromString(dataStack, expression, el) {
+  let func = generateFunctionFromString(expression, el);
+  return (receiver = () => {
+  }, { scope: scope2 = {}, params = [] } = {}) => {
+    func.result = void 0;
+    func.finished = false;
+    let completeScope = mergeProxies([scope2, ...dataStack]);
+    if (typeof func === "function") {
+      let promise = func(func, completeScope).catch((error2) => handleError(error2, el, expression));
+      if (func.finished) {
+        runIfTypeOfFunction(receiver, func.result, completeScope, params, el);
+        func.result = void 0;
+      } else {
+        promise.then((result) => {
+          runIfTypeOfFunction(receiver, result, completeScope, params, el);
+        }).catch((error2) => handleError(error2, el, expression)).finally(() => func.result = void 0);
+      }
+    }
+  };
+}
+function runIfTypeOfFunction(receiver, value, scope2, params, el) {
+  if (shouldAutoEvaluateFunctions && typeof value === "function") {
+    let result = value.apply(scope2, params);
+    if (result instanceof Promise) {
+      result.then((i) => runIfTypeOfFunction(receiver, i, scope2, params)).catch((error2) => handleError(error2, el, value));
+    } else {
+      receiver(result);
+    }
+  } else if (typeof value === "object" && value instanceof Promise) {
+    value.then((i) => receiver(i));
+  } else {
+    receiver(value);
+  }
+}
+
+// packages/alpinejs/src/directives.js
+var prefixAsString = "x-";
+function prefix(subject = "") {
+  return prefixAsString + subject;
+}
+function setPrefix(newPrefix) {
+  prefixAsString = newPrefix;
+}
+var directiveHandlers = {};
+function directive(name, callback) {
+  directiveHandlers[name] = callback;
+  return {
+    before(directive2) {
+      if (!directiveHandlers[directive2]) {
+        console.warn(
+          "Cannot find directive `${directive}`. `${name}` will use the default order of execution"
+        );
+        return;
+      }
+      const pos = directiveOrder.indexOf(directive2);
+      directiveOrder.splice(pos >= 0 ? pos : directiveOrder.indexOf("DEFAULT"), 0, name);
+    }
+  };
+}
+function directives(el, attributes, originalAttributeOverride) {
+  attributes = Array.from(attributes);
+  if (el._x_virtualDirectives) {
+    let vAttributes = Object.entries(el._x_virtualDirectives).map(([name, value]) => ({ name, value }));
+    let staticAttributes = attributesOnly(vAttributes);
+    vAttributes = vAttributes.map((attribute) => {
+      if (staticAttributes.find((attr) => attr.name === attribute.name)) {
+        return {
+          name: `x-bind:${attribute.name}`,
+          value: `"${attribute.value}"`
+        };
+      }
+      return attribute;
+    });
+    attributes = attributes.concat(vAttributes);
+  }
+  let transformedAttributeMap = {};
+  let directives2 = attributes.map(toTransformedAttributes((newName, oldName) => transformedAttributeMap[newName] = oldName)).filter(outNonAlpineAttributes).map(toParsedDirectives(transformedAttributeMap, originalAttributeOverride)).sort(byPriority);
+  return directives2.map((directive2) => {
+    return getDirectiveHandler(el, directive2);
+  });
+}
+function attributesOnly(attributes) {
+  return Array.from(attributes).map(toTransformedAttributes()).filter((attr) => !outNonAlpineAttributes(attr));
+}
+var isDeferringHandlers = false;
+var directiveHandlerStacks = /* @__PURE__ */ new Map();
+var currentHandlerStackKey = Symbol();
+function deferHandlingDirectives(callback) {
+  isDeferringHandlers = true;
+  let key = Symbol();
+  currentHandlerStackKey = key;
+  directiveHandlerStacks.set(key, []);
+  let flushHandlers = () => {
+    while (directiveHandlerStacks.get(key).length)
+      directiveHandlerStacks.get(key).shift()();
+    directiveHandlerStacks.delete(key);
+  };
+  let stopDeferring = () => {
+    isDeferringHandlers = false;
+    flushHandlers();
+  };
+  callback(flushHandlers);
+  stopDeferring();
+}
+function getElementBoundUtilities(el) {
+  let cleanups = [];
+  let cleanup2 = (callback) => cleanups.push(callback);
+  let [effect3, cleanupEffect] = elementBoundEffect(el);
+  cleanups.push(cleanupEffect);
+  let utilities = {
+    Alpine: alpine_default,
+    effect: effect3,
+    cleanup: cleanup2,
+    evaluateLater: evaluateLater.bind(evaluateLater, el),
+    evaluate: evaluate.bind(evaluate, el)
+  };
+  let doCleanup = () => cleanups.forEach((i) => i());
+  return [utilities, doCleanup];
+}
+function getDirectiveHandler(el, directive2) {
+  let noop = () => {
+  };
+  let handler4 = directiveHandlers[directive2.type] || noop;
+  let [utilities, cleanup2] = getElementBoundUtilities(el);
+  onAttributeRemoved(el, directive2.original, cleanup2);
+  let fullHandler = () => {
+    if (el._x_ignore || el._x_ignoreSelf)
+      return;
+    handler4.inline && handler4.inline(el, directive2, utilities);
+    handler4 = handler4.bind(handler4, el, directive2, utilities);
+    isDeferringHandlers ? directiveHandlerStacks.get(currentHandlerStackKey).push(handler4) : handler4();
+  };
+  fullHandler.runCleanups = cleanup2;
+  return fullHandler;
+}
+var startingWith = (subject, replacement) => ({ name, value }) => {
+  if (name.startsWith(subject))
+    name = name.replace(subject, replacement);
+  return { name, value };
+};
+var into = (i) => i;
+function toTransformedAttributes(callback = () => {
+}) {
+  return ({ name, value }) => {
+    let { name: newName, value: newValue } = attributeTransformers.reduce((carry, transform) => {
+      return transform(carry);
+    }, { name, value });
+    if (newName !== name)
+      callback(newName, name);
+    return { name: newName, value: newValue };
+  };
+}
+var attributeTransformers = [];
+function mapAttributes(callback) {
+  attributeTransformers.push(callback);
+}
+function outNonAlpineAttributes({ name }) {
+  return alpineAttributeRegex().test(name);
+}
+var alpineAttributeRegex = () => new RegExp(`^${prefixAsString}([^:^.]+)\\b`);
+function toParsedDirectives(transformedAttributeMap, originalAttributeOverride) {
+  return ({ name, value }) => {
+    let typeMatch = name.match(alpineAttributeRegex());
+    let valueMatch = name.match(/:([a-zA-Z0-9\-_:]+)/);
+    let modifiers = name.match(/\.[^.\]]+(?=[^\]]*$)/g) || [];
+    let original = originalAttributeOverride || transformedAttributeMap[name] || name;
+    return {
+      type: typeMatch ? typeMatch[1] : null,
+      value: valueMatch ? valueMatch[1] : null,
+      modifiers: modifiers.map((i) => i.replace(".", "")),
+      expression: value,
+      original
+    };
+  };
+}
+var DEFAULT = "DEFAULT";
+var directiveOrder = [
+  "ignore",
+  "ref",
+  "data",
+  "id",
+  "anchor",
+  "bind",
+  "init",
+  "for",
+  "model",
+  "modelable",
+  "transition",
+  "show",
+  "if",
+  DEFAULT,
+  "teleport"
+];
+function byPriority(a, b) {
+  let typeA = directiveOrder.indexOf(a.type) === -1 ? DEFAULT : a.type;
+  let typeB = directiveOrder.indexOf(b.type) === -1 ? DEFAULT : b.type;
+  return directiveOrder.indexOf(typeA) - directiveOrder.indexOf(typeB);
+}
+
+// packages/alpinejs/src/nextTick.js
+var tickStack = [];
+var isHolding = false;
+function nextTick(callback = () => {
+}) {
+  queueMicrotask(() => {
+    isHolding || setTimeout(() => {
+      releaseNextTicks();
+    });
+  });
+  return new Promise((res) => {
+    tickStack.push(() => {
+      callback();
+      res();
+    });
+  });
+}
+function releaseNextTicks() {
+  isHolding = false;
+  while (tickStack.length)
+    tickStack.shift()();
+}
+function holdNextTicks() {
+  isHolding = true;
+}
+
+// packages/alpinejs/src/utils/classes.js
+function setClasses(el, value) {
+  if (Array.isArray(value)) {
+    return setClassesFromString(el, value.join(" "));
+  } else if (typeof value === "object" && value !== null) {
+    return setClassesFromObject(el, value);
+  } else if (typeof value === "function") {
+    return setClasses(el, value());
+  }
+  return setClassesFromString(el, value);
+}
+function setClassesFromString(el, classString) {
+  let split = (classString2) => classString2.split(" ").filter(Boolean);
+  let missingClasses = (classString2) => classString2.split(" ").filter((i) => !el.classList.contains(i)).filter(Boolean);
+  let addClassesAndReturnUndo = (classes) => {
+    el.classList.add(...classes);
+    return () => {
+      el.classList.remove(...classes);
+    };
+  };
+  classString = classString === true ? classString = "" : classString || "";
+  return addClassesAndReturnUndo(missingClasses(classString));
+}
+function setClassesFromObject(el, classObject) {
+  let split = (classString) => classString.split(" ").filter(Boolean);
+  let forAdd = Object.entries(classObject).flatMap(([classString, bool]) => bool ? split(classString) : false).filter(Boolean);
+  let forRemove = Object.entries(classObject).flatMap(([classString, bool]) => !bool ? split(classString) : false).filter(Boolean);
+  let added = [];
+  let removed = [];
+  forRemove.forEach((i) => {
+    if (el.classList.contains(i)) {
+      el.classList.remove(i);
+      removed.push(i);
+    }
+  });
+  forAdd.forEach((i) => {
+    if (!el.classList.contains(i)) {
+      el.classList.add(i);
+      added.push(i);
+    }
+  });
+  return () => {
+    removed.forEach((i) => el.classList.add(i));
+    added.forEach((i) => el.classList.remove(i));
+  };
+}
+
+// packages/alpinejs/src/utils/styles.js
+function setStyles(el, value) {
+  if (typeof value === "object" && value !== null) {
+    return setStylesFromObject(el, value);
+  }
+  return setStylesFromString(el, value);
+}
+function setStylesFromObject(el, value) {
+  let previousStyles = {};
+  Object.entries(value).forEach(([key, value2]) => {
+    previousStyles[key] = el.style[key];
+    if (!key.startsWith("--")) {
+      key = kebabCase(key);
+    }
+    el.style.setProperty(key, value2);
+  });
+  setTimeout(() => {
+    if (el.style.length === 0) {
+      el.removeAttribute("style");
+    }
+  });
+  return () => {
+    setStyles(el, previousStyles);
+  };
+}
+function setStylesFromString(el, value) {
+  let cache = el.getAttribute("style", value);
+  el.setAttribute("style", value);
+  return () => {
+    el.setAttribute("style", cache || "");
+  };
+}
+function kebabCase(subject) {
+  return subject.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+}
+
+// packages/alpinejs/src/utils/once.js
+function once(callback, fallback = () => {
+}) {
+  let called = false;
+  return function() {
+    if (!called) {
+      called = true;
+      callback.apply(this, arguments);
+    } else {
+      fallback.apply(this, arguments);
+    }
+  };
+}
+
+// packages/alpinejs/src/directives/x-transition.js
+directive("transition", (el, { value, modifiers, expression }, { evaluate: evaluate2 }) => {
+  if (typeof expression === "function")
+    expression = evaluate2(expression);
+  if (expression === false)
+    return;
+  if (!expression || typeof expression === "boolean") {
+    registerTransitionsFromHelper(el, modifiers, value);
+  } else {
+    registerTransitionsFromClassString(el, expression, value);
+  }
+});
+function registerTransitionsFromClassString(el, classString, stage) {
+  registerTransitionObject(el, setClasses, "");
+  let directiveStorageMap = {
+    "enter": (classes) => {
+      el._x_transition.enter.during = classes;
+    },
+    "enter-start": (classes) => {
+      el._x_transition.enter.start = classes;
+    },
+    "enter-end": (classes) => {
+      el._x_transition.enter.end = classes;
+    },
+    "leave": (classes) => {
+      el._x_transition.leave.during = classes;
+    },
+    "leave-start": (classes) => {
+      el._x_transition.leave.start = classes;
+    },
+    "leave-end": (classes) => {
+      el._x_transition.leave.end = classes;
+    }
+  };
+  directiveStorageMap[stage](classString);
+}
+function registerTransitionsFromHelper(el, modifiers, stage) {
+  registerTransitionObject(el, setStyles);
+  let doesntSpecify = !modifiers.includes("in") && !modifiers.includes("out") && !stage;
+  let transitioningIn = doesntSpecify || modifiers.includes("in") || ["enter"].includes(stage);
+  let transitioningOut = doesntSpecify || modifiers.includes("out") || ["leave"].includes(stage);
+  if (modifiers.includes("in") && !doesntSpecify) {
+    modifiers = modifiers.filter((i, index) => index < modifiers.indexOf("out"));
+  }
+  if (modifiers.includes("out") && !doesntSpecify) {
+    modifiers = modifiers.filter((i, index) => index > modifiers.indexOf("out"));
+  }
+  let wantsAll = !modifiers.includes("opacity") && !modifiers.includes("scale");
+  let wantsOpacity = wantsAll || modifiers.includes("opacity");
+  let wantsScale = wantsAll || modifiers.includes("scale");
+  let opacityValue = wantsOpacity ? 0 : 1;
+  let scaleValue = wantsScale ? modifierValue(modifiers, "scale", 95) / 100 : 1;
+  let delay = modifierValue(modifiers, "delay", 0) / 1e3;
+  let origin = modifierValue(modifiers, "origin", "center");
+  let property = "opacity, transform";
+  let durationIn = modifierValue(modifiers, "duration", 150) / 1e3;
+  let durationOut = modifierValue(modifiers, "duration", 75) / 1e3;
+  let easing = `cubic-bezier(0.4, 0.0, 0.2, 1)`;
+  if (transitioningIn) {
+    el._x_transition.enter.during = {
+      transformOrigin: origin,
+      transitionDelay: `${delay}s`,
+      transitionProperty: property,
+      transitionDuration: `${durationIn}s`,
+      transitionTimingFunction: easing
+    };
+    el._x_transition.enter.start = {
+      opacity: opacityValue,
+      transform: `scale(${scaleValue})`
+    };
+    el._x_transition.enter.end = {
+      opacity: 1,
+      transform: `scale(1)`
+    };
+  }
+  if (transitioningOut) {
+    el._x_transition.leave.during = {
+      transformOrigin: origin,
+      transitionDelay: `${delay}s`,
+      transitionProperty: property,
+      transitionDuration: `${durationOut}s`,
+      transitionTimingFunction: easing
+    };
+    el._x_transition.leave.start = {
+      opacity: 1,
+      transform: `scale(1)`
+    };
+    el._x_transition.leave.end = {
+      opacity: opacityValue,
+      transform: `scale(${scaleValue})`
+    };
+  }
+}
+function registerTransitionObject(el, setFunction, defaultValue = {}) {
+  if (!el._x_transition)
+    el._x_transition = {
+      enter: { during: defaultValue, start: defaultValue, end: defaultValue },
+      leave: { during: defaultValue, start: defaultValue, end: defaultValue },
+      in(before = () => {
+      }, after = () => {
+      }) {
+        transition(el, setFunction, {
+          during: this.enter.during,
+          start: this.enter.start,
+          end: this.enter.end
+        }, before, after);
+      },
+      out(before = () => {
+      }, after = () => {
+      }) {
+        transition(el, setFunction, {
+          during: this.leave.during,
+          start: this.leave.start,
+          end: this.leave.end
+        }, before, after);
+      }
+    };
+}
+window.Element.prototype._x_toggleAndCascadeWithTransitions = function(el, value, show, hide) {
+  const nextTick2 = document.visibilityState === "visible" ? requestAnimationFrame : setTimeout;
+  let clickAwayCompatibleShow = () => nextTick2(show);
+  if (value) {
+    if (el._x_transition && (el._x_transition.enter || el._x_transition.leave)) {
+      el._x_transition.enter && (Object.entries(el._x_transition.enter.during).length || Object.entries(el._x_transition.enter.start).length || Object.entries(el._x_transition.enter.end).length) ? el._x_transition.in(show) : clickAwayCompatibleShow();
+    } else {
+      el._x_transition ? el._x_transition.in(show) : clickAwayCompatibleShow();
+    }
+    return;
+  }
+  el._x_hidePromise = el._x_transition ? new Promise((resolve, reject) => {
+    el._x_transition.out(() => {
+    }, () => resolve(hide));
+    el._x_transitioning && el._x_transitioning.beforeCancel(() => reject({ isFromCancelledTransition: true }));
+  }) : Promise.resolve(hide);
+  queueMicrotask(() => {
+    let closest = closestHide(el);
+    if (closest) {
+      if (!closest._x_hideChildren)
+        closest._x_hideChildren = [];
+      closest._x_hideChildren.push(el);
+    } else {
+      nextTick2(() => {
+        let hideAfterChildren = (el2) => {
+          let carry = Promise.all([
+            el2._x_hidePromise,
+            ...(el2._x_hideChildren || []).map(hideAfterChildren)
+          ]).then(([i]) => i());
+          delete el2._x_hidePromise;
+          delete el2._x_hideChildren;
+          return carry;
+        };
+        hideAfterChildren(el).catch((e) => {
+          if (!e.isFromCancelledTransition)
+            throw e;
+        });
+      });
+    }
+  });
+};
+function closestHide(el) {
+  let parent = el.parentNode;
+  if (!parent)
+    return;
+  return parent._x_hidePromise ? parent : closestHide(parent);
+}
+function transition(el, setFunction, { during, start: start2, end } = {}, before = () => {
+}, after = () => {
+}) {
+  if (el._x_transitioning)
+    el._x_transitioning.cancel();
+  if (Object.keys(during).length === 0 && Object.keys(start2).length === 0 && Object.keys(end).length === 0) {
+    before();
+    after();
+    return;
+  }
+  let undoStart, undoDuring, undoEnd;
+  performTransition(el, {
+    start() {
+      undoStart = setFunction(el, start2);
+    },
+    during() {
+      undoDuring = setFunction(el, during);
+    },
+    before,
+    end() {
+      undoStart();
+      undoEnd = setFunction(el, end);
+    },
+    after,
+    cleanup() {
+      undoDuring();
+      undoEnd();
+    }
+  });
+}
+function performTransition(el, stages) {
+  let interrupted, reachedBefore, reachedEnd;
+  let finish = once(() => {
+    mutateDom(() => {
+      interrupted = true;
+      if (!reachedBefore)
+        stages.before();
+      if (!reachedEnd) {
+        stages.end();
+        releaseNextTicks();
+      }
+      stages.after();
+      if (el.isConnected)
+        stages.cleanup();
+      delete el._x_transitioning;
+    });
+  });
+  el._x_transitioning = {
+    beforeCancels: [],
+    beforeCancel(callback) {
+      this.beforeCancels.push(callback);
+    },
+    cancel: once(function() {
+      while (this.beforeCancels.length) {
+        this.beforeCancels.shift()();
+      }
+      ;
+      finish();
+    }),
+    finish
+  };
+  mutateDom(() => {
+    stages.start();
+    stages.during();
+  });
+  holdNextTicks();
+  requestAnimationFrame(() => {
+    if (interrupted)
+      return;
+    let duration = Number(getComputedStyle(el).transitionDuration.replace(/,.*/, "").replace("s", "")) * 1e3;
+    let delay = Number(getComputedStyle(el).transitionDelay.replace(/,.*/, "").replace("s", "")) * 1e3;
+    if (duration === 0)
+      duration = Number(getComputedStyle(el).animationDuration.replace("s", "")) * 1e3;
+    mutateDom(() => {
+      stages.before();
+    });
+    reachedBefore = true;
+    requestAnimationFrame(() => {
+      if (interrupted)
+        return;
+      mutateDom(() => {
+        stages.end();
+      });
+      releaseNextTicks();
+      setTimeout(el._x_transitioning.finish, duration + delay);
+      reachedEnd = true;
+    });
+  });
+}
+function modifierValue(modifiers, key, fallback) {
+  if (modifiers.indexOf(key) === -1)
+    return fallback;
+  const rawValue = modifiers[modifiers.indexOf(key) + 1];
+  if (!rawValue)
+    return fallback;
+  if (key === "scale") {
+    if (isNaN(rawValue))
+      return fallback;
+  }
+  if (key === "duration" || key === "delay") {
+    let match = rawValue.match(/([0-9]+)ms/);
+    if (match)
+      return match[1];
+  }
+  if (key === "origin") {
+    if (["top", "right", "left", "center", "bottom"].includes(modifiers[modifiers.indexOf(key) + 2])) {
+      return [rawValue, modifiers[modifiers.indexOf(key) + 2]].join(" ");
+    }
+  }
+  return rawValue;
+}
+
+// packages/alpinejs/src/clone.js
+var isCloning = false;
+function skipDuringClone(callback, fallback = () => {
+}) {
+  return (...args) => isCloning ? fallback(...args) : callback(...args);
+}
+function onlyDuringClone(callback) {
+  return (...args) => isCloning && callback(...args);
+}
+var interceptors = [];
+function interceptClone(callback) {
+  interceptors.push(callback);
+}
+function cloneNode(from, to) {
+  interceptors.forEach((i) => i(from, to));
+  isCloning = true;
+  dontRegisterReactiveSideEffects(() => {
+    initTree(to, (el, callback) => {
+      callback(el, () => {
+      });
+    });
+  });
+  isCloning = false;
+}
+var isCloningLegacy = false;
+function clone(oldEl, newEl) {
+  if (!newEl._x_dataStack)
+    newEl._x_dataStack = oldEl._x_dataStack;
+  isCloning = true;
+  isCloningLegacy = true;
+  dontRegisterReactiveSideEffects(() => {
+    cloneTree(newEl);
+  });
+  isCloning = false;
+  isCloningLegacy = false;
+}
+function cloneTree(el) {
+  let hasRunThroughFirstEl = false;
+  let shallowWalker = (el2, callback) => {
+    walk(el2, (el3, skip) => {
+      if (hasRunThroughFirstEl && isRoot(el3))
+        return skip();
+      hasRunThroughFirstEl = true;
+      callback(el3, skip);
+    });
+  };
+  initTree(el, shallowWalker);
+}
+function dontRegisterReactiveSideEffects(callback) {
+  let cache = effect;
+  overrideEffect((callback2, el) => {
+    let storedEffect = cache(callback2);
+    release(storedEffect);
+    return () => {
+    };
+  });
+  callback();
+  overrideEffect(cache);
+}
+
+// packages/alpinejs/src/utils/bind.js
+function bind(el, name, value, modifiers = []) {
+  if (!el._x_bindings)
+    el._x_bindings = reactive({});
+  el._x_bindings[name] = value;
+  name = modifiers.includes("camel") ? camelCase(name) : name;
+  switch (name) {
+    case "value":
+      bindInputValue(el, value);
+      break;
+    case "style":
+      bindStyles(el, value);
+      break;
+    case "class":
+      bindClasses(el, value);
+      break;
+    case "selected":
+    case "checked":
+      bindAttributeAndProperty(el, name, value);
+      break;
+    default:
+      bindAttribute(el, name, value);
+      break;
+  }
+}
+function bindInputValue(el, value) {
+  if (el.type === "radio") {
+    if (el.attributes.value === void 0) {
+      el.value = value;
+    }
+    if (window.fromModel) {
+      if (typeof value === "boolean") {
+        el.checked = safeParseBoolean(el.value) === value;
+      } else {
+        el.checked = checkedAttrLooseCompare(el.value, value);
+      }
+    }
+  } else if (el.type === "checkbox") {
+    if (Number.isInteger(value)) {
+      el.value = value;
+    } else if (!Array.isArray(value) && typeof value !== "boolean" && ![null, void 0].includes(value)) {
+      el.value = String(value);
+    } else {
+      if (Array.isArray(value)) {
+        el.checked = value.some((val) => checkedAttrLooseCompare(val, el.value));
+      } else {
+        el.checked = !!value;
+      }
+    }
+  } else if (el.tagName === "SELECT") {
+    updateSelect(el, value);
+  } else {
+    if (el.value === value)
+      return;
+    el.value = value === void 0 ? "" : value;
+  }
+}
+function bindClasses(el, value) {
+  if (el._x_undoAddedClasses)
+    el._x_undoAddedClasses();
+  el._x_undoAddedClasses = setClasses(el, value);
+}
+function bindStyles(el, value) {
+  if (el._x_undoAddedStyles)
+    el._x_undoAddedStyles();
+  el._x_undoAddedStyles = setStyles(el, value);
+}
+function bindAttributeAndProperty(el, name, value) {
+  bindAttribute(el, name, value);
+  setPropertyIfChanged(el, name, value);
+}
+function bindAttribute(el, name, value) {
+  if ([null, void 0, false].includes(value) && attributeShouldntBePreservedIfFalsy(name)) {
+    el.removeAttribute(name);
+  } else {
+    if (isBooleanAttr(name))
+      value = name;
+    setIfChanged(el, name, value);
+  }
+}
+function setIfChanged(el, attrName, value) {
+  if (el.getAttribute(attrName) != value) {
+    el.setAttribute(attrName, value);
+  }
+}
+function setPropertyIfChanged(el, propName, value) {
+  if (el[propName] !== value) {
+    el[propName] = value;
+  }
+}
+function updateSelect(el, value) {
+  const arrayWrappedValue = [].concat(value).map((value2) => {
+    return value2 + "";
+  });
+  Array.from(el.options).forEach((option) => {
+    option.selected = arrayWrappedValue.includes(option.value);
+  });
+}
+function camelCase(subject) {
+  return subject.toLowerCase().replace(/-(\w)/g, (match, char) => char.toUpperCase());
+}
+function checkedAttrLooseCompare(valueA, valueB) {
+  return valueA == valueB;
+}
+function safeParseBoolean(rawValue) {
+  if ([1, "1", "true", "on", "yes", true].includes(rawValue)) {
+    return true;
+  }
+  if ([0, "0", "false", "off", "no", false].includes(rawValue)) {
+    return false;
+  }
+  return rawValue ? Boolean(rawValue) : null;
+}
+function isBooleanAttr(attrName) {
+  const booleanAttributes = [
+    "disabled",
+    "checked",
+    "required",
+    "readonly",
+    "hidden",
+    "open",
+    "selected",
+    "autofocus",
+    "itemscope",
+    "multiple",
+    "novalidate",
+    "allowfullscreen",
+    "allowpaymentrequest",
+    "formnovalidate",
+    "autoplay",
+    "controls",
+    "loop",
+    "muted",
+    "playsinline",
+    "default",
+    "ismap",
+    "reversed",
+    "async",
+    "defer",
+    "nomodule"
+  ];
+  return booleanAttributes.includes(attrName);
+}
+function attributeShouldntBePreservedIfFalsy(name) {
+  return !["aria-pressed", "aria-checked", "aria-expanded", "aria-selected"].includes(name);
+}
+function getBinding(el, name, fallback) {
+  if (el._x_bindings && el._x_bindings[name] !== void 0)
+    return el._x_bindings[name];
+  return getAttributeBinding(el, name, fallback);
+}
+function extractProp(el, name, fallback, extract = true) {
+  if (el._x_bindings && el._x_bindings[name] !== void 0)
+    return el._x_bindings[name];
+  if (el._x_inlineBindings && el._x_inlineBindings[name] !== void 0) {
+    let binding = el._x_inlineBindings[name];
+    binding.extract = extract;
+    return dontAutoEvaluateFunctions(() => {
+      return evaluate(el, binding.expression);
+    });
+  }
+  return getAttributeBinding(el, name, fallback);
+}
+function getAttributeBinding(el, name, fallback) {
+  let attr = el.getAttribute(name);
+  if (attr === null)
+    return typeof fallback === "function" ? fallback() : fallback;
+  if (attr === "")
+    return true;
+  if (isBooleanAttr(name)) {
+    return !![name, "true"].includes(attr);
+  }
+  return attr;
+}
+
+// packages/alpinejs/src/utils/debounce.js
+function debounce(func, wait) {
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      func.apply(context, args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// packages/alpinejs/src/utils/throttle.js
+function throttle(func, limit) {
+  let inThrottle;
+  return function() {
+    let context = this, args = arguments;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
+// packages/alpinejs/src/entangle.js
+function entangle({ get: outerGet, set: outerSet }, { get: innerGet, set: innerSet }) {
+  let firstRun = true;
+  let outerHash;
+  let reference = effect(() => {
+    const outer = outerGet();
+    const inner = innerGet();
+    if (firstRun) {
+      innerSet(cloneIfObject(outer));
+      firstRun = false;
+      outerHash = JSON.stringify(outer);
+    } else {
+      const outerHashLatest = JSON.stringify(outer);
+      if (outerHashLatest !== outerHash) {
+        innerSet(cloneIfObject(outer));
+        outerHash = outerHashLatest;
+      } else {
+        outerSet(cloneIfObject(inner));
+        outerHash = JSON.stringify(inner);
+      }
+    }
+    JSON.stringify(innerGet());
+    JSON.stringify(outerGet());
+  });
+  return () => {
+    release(reference);
+  };
+}
+function cloneIfObject(value) {
+  return typeof value === "object" ? JSON.parse(JSON.stringify(value)) : value;
+}
+
+// packages/alpinejs/src/plugin.js
+function plugin(callback) {
+  let callbacks = Array.isArray(callback) ? callback : [callback];
+  callbacks.forEach((i) => i(alpine_default));
+}
+
+// packages/alpinejs/src/store.js
+var stores = {};
+var isReactive = false;
+function store(name, value) {
+  if (!isReactive) {
+    stores = reactive(stores);
+    isReactive = true;
+  }
+  if (value === void 0) {
+    return stores[name];
+  }
+  stores[name] = value;
+  if (typeof value === "object" && value !== null && value.hasOwnProperty("init") && typeof value.init === "function") {
+    stores[name].init();
+  }
+  initInterceptors2(stores[name]);
+}
+function getStores() {
+  return stores;
+}
+
+// packages/alpinejs/src/binds.js
+var binds = {};
+function bind2(name, bindings) {
+  let getBindings = typeof bindings !== "function" ? () => bindings : bindings;
+  if (name instanceof Element) {
+    return applyBindingsObject(name, getBindings());
+  } else {
+    binds[name] = getBindings;
+  }
+  return () => {
+  };
+}
+function injectBindingProviders(obj) {
+  Object.entries(binds).forEach(([name, callback]) => {
+    Object.defineProperty(obj, name, {
+      get() {
+        return (...args) => {
+          return callback(...args);
+        };
+      }
+    });
+  });
+  return obj;
+}
+function applyBindingsObject(el, obj, original) {
+  let cleanupRunners = [];
+  while (cleanupRunners.length)
+    cleanupRunners.pop()();
+  let attributes = Object.entries(obj).map(([name, value]) => ({ name, value }));
+  let staticAttributes = attributesOnly(attributes);
+  attributes = attributes.map((attribute) => {
+    if (staticAttributes.find((attr) => attr.name === attribute.name)) {
+      return {
+        name: `x-bind:${attribute.name}`,
+        value: `"${attribute.value}"`
+      };
+    }
+    return attribute;
+  });
+  directives(el, attributes, original).map((handle) => {
+    cleanupRunners.push(handle.runCleanups);
+    handle();
+  });
+  return () => {
+    while (cleanupRunners.length)
+      cleanupRunners.pop()();
+  };
+}
+
+// packages/alpinejs/src/datas.js
+var datas = {};
+function data(name, callback) {
+  datas[name] = callback;
+}
+function injectDataProviders(obj, context) {
+  Object.entries(datas).forEach(([name, callback]) => {
+    Object.defineProperty(obj, name, {
+      get() {
+        return (...args) => {
+          return callback.bind(context)(...args);
+        };
+      },
+      enumerable: false
+    });
+  });
+  return obj;
+}
+
+// packages/alpinejs/src/alpine.js
+var Alpine = {
+  get reactive() {
+    return reactive;
+  },
+  get release() {
+    return release;
+  },
+  get effect() {
+    return effect;
+  },
+  get raw() {
+    return raw;
+  },
+  version: "3.13.3",
+  flushAndStopDeferringMutations,
+  dontAutoEvaluateFunctions,
+  disableEffectScheduling,
+  startObservingMutations,
+  stopObservingMutations,
+  setReactivityEngine,
+  onAttributeRemoved,
+  onAttributesAdded,
+  closestDataStack,
+  skipDuringClone,
+  onlyDuringClone,
+  addRootSelector,
+  addInitSelector,
+  interceptClone,
+  addScopeToNode,
+  deferMutations,
+  mapAttributes,
+  evaluateLater,
+  interceptInit,
+  setEvaluator,
+  mergeProxies,
+  extractProp,
+  findClosest,
+  onElRemoved,
+  closestRoot,
+  destroyTree,
+  interceptor,
+  // INTERNAL: not public API and is subject to change without major release.
+  transition,
+  // INTERNAL
+  setStyles,
+  // INTERNAL
+  mutateDom,
+  directive,
+  entangle,
+  throttle,
+  debounce,
+  evaluate,
+  initTree,
+  nextTick,
+  prefixed: prefix,
+  prefix: setPrefix,
+  plugin,
+  magic,
+  store,
+  start,
+  clone,
+  // INTERNAL
+  cloneNode,
+  // INTERNAL
+  bound: getBinding,
+  $data: scope,
+  walk,
+  data,
+  bind: bind2
+};
+var alpine_default = Alpine;
+
+// node_modules/@vue/shared/dist/shared.esm-bundler.js
+function makeMap(str, expectsLowerCase) {
+  const map = /* @__PURE__ */ Object.create(null);
+  const list = str.split(",");
+  for (let i = 0; i < list.length; i++) {
+    map[list[i]] = true;
+  }
+  return expectsLowerCase ? (val) => !!map[val.toLowerCase()] : (val) => !!map[val];
+}
+var specialBooleanAttrs = `itemscope,allowfullscreen,formnovalidate,ismap,nomodule,novalidate,readonly`;
+var isBooleanAttr2 = /* @__PURE__ */ makeMap(specialBooleanAttrs + `,async,autofocus,autoplay,controls,default,defer,disabled,hidden,loop,open,required,reversed,scoped,seamless,checked,muted,multiple,selected`);
+var EMPTY_OBJ =  true ? Object.freeze({}) : 0;
+var EMPTY_ARR =  true ? Object.freeze([]) : 0;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var hasOwn = (val, key) => hasOwnProperty.call(val, key);
+var isArray = Array.isArray;
+var isMap = (val) => toTypeString(val) === "[object Map]";
+var isString = (val) => typeof val === "string";
+var isSymbol = (val) => typeof val === "symbol";
+var isObject = (val) => val !== null && typeof val === "object";
+var objectToString = Object.prototype.toString;
+var toTypeString = (value) => objectToString.call(value);
+var toRawType = (value) => {
+  return toTypeString(value).slice(8, -1);
+};
+var isIntegerKey = (key) => isString(key) && key !== "NaN" && key[0] !== "-" && "" + parseInt(key, 10) === key;
+var cacheStringFunction = (fn) => {
+  const cache = /* @__PURE__ */ Object.create(null);
+  return (str) => {
+    const hit = cache[str];
+    return hit || (cache[str] = fn(str));
+  };
+};
+var camelizeRE = /-(\w)/g;
+var camelize = cacheStringFunction((str) => {
+  return str.replace(camelizeRE, (_, c) => c ? c.toUpperCase() : "");
+});
+var hyphenateRE = /\B([A-Z])/g;
+var hyphenate = cacheStringFunction((str) => str.replace(hyphenateRE, "-$1").toLowerCase());
+var capitalize = cacheStringFunction((str) => str.charAt(0).toUpperCase() + str.slice(1));
+var toHandlerKey = cacheStringFunction((str) => str ? `on${capitalize(str)}` : ``);
+var hasChanged = (value, oldValue) => value !== oldValue && (value === value || oldValue === oldValue);
+
+// node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js
+var targetMap = /* @__PURE__ */ new WeakMap();
+var effectStack = [];
+var activeEffect;
+var ITERATE_KEY = Symbol( true ? "iterate" : 0);
+var MAP_KEY_ITERATE_KEY = Symbol( true ? "Map key iterate" : 0);
+function isEffect(fn) {
+  return fn && fn._isEffect === true;
+}
+function effect2(fn, options = EMPTY_OBJ) {
+  if (isEffect(fn)) {
+    fn = fn.raw;
+  }
+  const effect3 = createReactiveEffect(fn, options);
+  if (!options.lazy) {
+    effect3();
+  }
+  return effect3;
+}
+function stop(effect3) {
+  if (effect3.active) {
+    cleanup(effect3);
+    if (effect3.options.onStop) {
+      effect3.options.onStop();
+    }
+    effect3.active = false;
+  }
+}
+var uid = 0;
+function createReactiveEffect(fn, options) {
+  const effect3 = function reactiveEffect() {
+    if (!effect3.active) {
+      return fn();
+    }
+    if (!effectStack.includes(effect3)) {
+      cleanup(effect3);
+      try {
+        enableTracking();
+        effectStack.push(effect3);
+        activeEffect = effect3;
+        return fn();
+      } finally {
+        effectStack.pop();
+        resetTracking();
+        activeEffect = effectStack[effectStack.length - 1];
+      }
+    }
+  };
+  effect3.id = uid++;
+  effect3.allowRecurse = !!options.allowRecurse;
+  effect3._isEffect = true;
+  effect3.active = true;
+  effect3.raw = fn;
+  effect3.deps = [];
+  effect3.options = options;
+  return effect3;
+}
+function cleanup(effect3) {
+  const { deps } = effect3;
+  if (deps.length) {
+    for (let i = 0; i < deps.length; i++) {
+      deps[i].delete(effect3);
+    }
+    deps.length = 0;
+  }
+}
+var shouldTrack = true;
+var trackStack = [];
+function pauseTracking() {
+  trackStack.push(shouldTrack);
+  shouldTrack = false;
+}
+function enableTracking() {
+  trackStack.push(shouldTrack);
+  shouldTrack = true;
+}
+function resetTracking() {
+  const last = trackStack.pop();
+  shouldTrack = last === void 0 ? true : last;
+}
+function track(target, type, key) {
+  if (!shouldTrack || activeEffect === void 0) {
+    return;
+  }
+  let depsMap = targetMap.get(target);
+  if (!depsMap) {
+    targetMap.set(target, depsMap = /* @__PURE__ */ new Map());
+  }
+  let dep = depsMap.get(key);
+  if (!dep) {
+    depsMap.set(key, dep = /* @__PURE__ */ new Set());
+  }
+  if (!dep.has(activeEffect)) {
+    dep.add(activeEffect);
+    activeEffect.deps.push(dep);
+    if (activeEffect.options.onTrack) {
+      activeEffect.options.onTrack({
+        effect: activeEffect,
+        target,
+        type,
+        key
+      });
+    }
+  }
+}
+function trigger(target, type, key, newValue, oldValue, oldTarget) {
+  const depsMap = targetMap.get(target);
+  if (!depsMap) {
+    return;
+  }
+  const effects = /* @__PURE__ */ new Set();
+  const add2 = (effectsToAdd) => {
+    if (effectsToAdd) {
+      effectsToAdd.forEach((effect3) => {
+        if (effect3 !== activeEffect || effect3.allowRecurse) {
+          effects.add(effect3);
+        }
+      });
+    }
+  };
+  if (type === "clear") {
+    depsMap.forEach(add2);
+  } else if (key === "length" && isArray(target)) {
+    depsMap.forEach((dep, key2) => {
+      if (key2 === "length" || key2 >= newValue) {
+        add2(dep);
+      }
+    });
+  } else {
+    if (key !== void 0) {
+      add2(depsMap.get(key));
+    }
+    switch (type) {
+      case "add":
+        if (!isArray(target)) {
+          add2(depsMap.get(ITERATE_KEY));
+          if (isMap(target)) {
+            add2(depsMap.get(MAP_KEY_ITERATE_KEY));
+          }
+        } else if (isIntegerKey(key)) {
+          add2(depsMap.get("length"));
+        }
+        break;
+      case "delete":
+        if (!isArray(target)) {
+          add2(depsMap.get(ITERATE_KEY));
+          if (isMap(target)) {
+            add2(depsMap.get(MAP_KEY_ITERATE_KEY));
+          }
+        }
+        break;
+      case "set":
+        if (isMap(target)) {
+          add2(depsMap.get(ITERATE_KEY));
+        }
+        break;
+    }
+  }
+  const run = (effect3) => {
+    if (effect3.options.onTrigger) {
+      effect3.options.onTrigger({
+        effect: effect3,
+        target,
+        key,
+        type,
+        newValue,
+        oldValue,
+        oldTarget
+      });
+    }
+    if (effect3.options.scheduler) {
+      effect3.options.scheduler(effect3);
+    } else {
+      effect3();
+    }
+  };
+  effects.forEach(run);
+}
+var isNonTrackableKeys = /* @__PURE__ */ makeMap(`__proto__,__v_isRef,__isVue`);
+var builtInSymbols = new Set(Object.getOwnPropertyNames(Symbol).map((key) => Symbol[key]).filter(isSymbol));
+var get2 = /* @__PURE__ */ createGetter();
+var readonlyGet = /* @__PURE__ */ createGetter(true);
+var arrayInstrumentations = /* @__PURE__ */ createArrayInstrumentations();
+function createArrayInstrumentations() {
+  const instrumentations = {};
+  ["includes", "indexOf", "lastIndexOf"].forEach((key) => {
+    instrumentations[key] = function(...args) {
+      const arr = toRaw(this);
+      for (let i = 0, l = this.length; i < l; i++) {
+        track(arr, "get", i + "");
+      }
+      const res = arr[key](...args);
+      if (res === -1 || res === false) {
+        return arr[key](...args.map(toRaw));
+      } else {
+        return res;
+      }
+    };
+  });
+  ["push", "pop", "shift", "unshift", "splice"].forEach((key) => {
+    instrumentations[key] = function(...args) {
+      pauseTracking();
+      const res = toRaw(this)[key].apply(this, args);
+      resetTracking();
+      return res;
+    };
+  });
+  return instrumentations;
+}
+function createGetter(isReadonly = false, shallow = false) {
+  return function get3(target, key, receiver) {
+    if (key === "__v_isReactive") {
+      return !isReadonly;
+    } else if (key === "__v_isReadonly") {
+      return isReadonly;
+    } else if (key === "__v_raw" && receiver === (isReadonly ? shallow ? shallowReadonlyMap : readonlyMap : shallow ? shallowReactiveMap : reactiveMap).get(target)) {
+      return target;
+    }
+    const targetIsArray = isArray(target);
+    if (!isReadonly && targetIsArray && hasOwn(arrayInstrumentations, key)) {
+      return Reflect.get(arrayInstrumentations, key, receiver);
+    }
+    const res = Reflect.get(target, key, receiver);
+    if (isSymbol(key) ? builtInSymbols.has(key) : isNonTrackableKeys(key)) {
+      return res;
+    }
+    if (!isReadonly) {
+      track(target, "get", key);
+    }
+    if (shallow) {
+      return res;
+    }
+    if (isRef(res)) {
+      const shouldUnwrap = !targetIsArray || !isIntegerKey(key);
+      return shouldUnwrap ? res.value : res;
+    }
+    if (isObject(res)) {
+      return isReadonly ? readonly(res) : reactive2(res);
+    }
+    return res;
+  };
+}
+var set2 = /* @__PURE__ */ createSetter();
+function createSetter(shallow = false) {
+  return function set3(target, key, value, receiver) {
+    let oldValue = target[key];
+    if (!shallow) {
+      value = toRaw(value);
+      oldValue = toRaw(oldValue);
+      if (!isArray(target) && isRef(oldValue) && !isRef(value)) {
+        oldValue.value = value;
+        return true;
+      }
+    }
+    const hadKey = isArray(target) && isIntegerKey(key) ? Number(key) < target.length : hasOwn(target, key);
+    const result = Reflect.set(target, key, value, receiver);
+    if (target === toRaw(receiver)) {
+      if (!hadKey) {
+        trigger(target, "add", key, value);
+      } else if (hasChanged(value, oldValue)) {
+        trigger(target, "set", key, value, oldValue);
+      }
+    }
+    return result;
+  };
+}
+function deleteProperty(target, key) {
+  const hadKey = hasOwn(target, key);
+  const oldValue = target[key];
+  const result = Reflect.deleteProperty(target, key);
+  if (result && hadKey) {
+    trigger(target, "delete", key, void 0, oldValue);
+  }
+  return result;
+}
+function has(target, key) {
+  const result = Reflect.has(target, key);
+  if (!isSymbol(key) || !builtInSymbols.has(key)) {
+    track(target, "has", key);
+  }
+  return result;
+}
+function ownKeys(target) {
+  track(target, "iterate", isArray(target) ? "length" : ITERATE_KEY);
+  return Reflect.ownKeys(target);
+}
+var mutableHandlers = {
+  get: get2,
+  set: set2,
+  deleteProperty,
+  has,
+  ownKeys
+};
+var readonlyHandlers = {
+  get: readonlyGet,
+  set(target, key) {
+    if (true) {
+      console.warn(`Set operation on key "${String(key)}" failed: target is readonly.`, target);
+    }
+    return true;
+  },
+  deleteProperty(target, key) {
+    if (true) {
+      console.warn(`Delete operation on key "${String(key)}" failed: target is readonly.`, target);
+    }
+    return true;
+  }
+};
+var toReactive = (value) => isObject(value) ? reactive2(value) : value;
+var toReadonly = (value) => isObject(value) ? readonly(value) : value;
+var toShallow = (value) => value;
+var getProto = (v) => Reflect.getPrototypeOf(v);
+function get$1(target, key, isReadonly = false, isShallow = false) {
+  target = target[
+    "__v_raw"
+    /* RAW */
+  ];
+  const rawTarget = toRaw(target);
+  const rawKey = toRaw(key);
+  if (key !== rawKey) {
+    !isReadonly && track(rawTarget, "get", key);
+  }
+  !isReadonly && track(rawTarget, "get", rawKey);
+  const { has: has2 } = getProto(rawTarget);
+  const wrap = isShallow ? toShallow : isReadonly ? toReadonly : toReactive;
+  if (has2.call(rawTarget, key)) {
+    return wrap(target.get(key));
+  } else if (has2.call(rawTarget, rawKey)) {
+    return wrap(target.get(rawKey));
+  } else if (target !== rawTarget) {
+    target.get(key);
+  }
+}
+function has$1(key, isReadonly = false) {
+  const target = this[
+    "__v_raw"
+    /* RAW */
+  ];
+  const rawTarget = toRaw(target);
+  const rawKey = toRaw(key);
+  if (key !== rawKey) {
+    !isReadonly && track(rawTarget, "has", key);
+  }
+  !isReadonly && track(rawTarget, "has", rawKey);
+  return key === rawKey ? target.has(key) : target.has(key) || target.has(rawKey);
+}
+function size(target, isReadonly = false) {
+  target = target[
+    "__v_raw"
+    /* RAW */
+  ];
+  !isReadonly && track(toRaw(target), "iterate", ITERATE_KEY);
+  return Reflect.get(target, "size", target);
+}
+function add(value) {
+  value = toRaw(value);
+  const target = toRaw(this);
+  const proto = getProto(target);
+  const hadKey = proto.has.call(target, value);
+  if (!hadKey) {
+    target.add(value);
+    trigger(target, "add", value, value);
+  }
+  return this;
+}
+function set$1(key, value) {
+  value = toRaw(value);
+  const target = toRaw(this);
+  const { has: has2, get: get3 } = getProto(target);
+  let hadKey = has2.call(target, key);
+  if (!hadKey) {
+    key = toRaw(key);
+    hadKey = has2.call(target, key);
+  } else if (true) {
+    checkIdentityKeys(target, has2, key);
+  }
+  const oldValue = get3.call(target, key);
+  target.set(key, value);
+  if (!hadKey) {
+    trigger(target, "add", key, value);
+  } else if (hasChanged(value, oldValue)) {
+    trigger(target, "set", key, value, oldValue);
+  }
+  return this;
+}
+function deleteEntry(key) {
+  const target = toRaw(this);
+  const { has: has2, get: get3 } = getProto(target);
+  let hadKey = has2.call(target, key);
+  if (!hadKey) {
+    key = toRaw(key);
+    hadKey = has2.call(target, key);
+  } else if (true) {
+    checkIdentityKeys(target, has2, key);
+  }
+  const oldValue = get3 ? get3.call(target, key) : void 0;
+  const result = target.delete(key);
+  if (hadKey) {
+    trigger(target, "delete", key, void 0, oldValue);
+  }
+  return result;
+}
+function clear() {
+  const target = toRaw(this);
+  const hadItems = target.size !== 0;
+  const oldTarget =  true ? isMap(target) ? new Map(target) : new Set(target) : 0;
+  const result = target.clear();
+  if (hadItems) {
+    trigger(target, "clear", void 0, void 0, oldTarget);
+  }
+  return result;
+}
+function createForEach(isReadonly, isShallow) {
+  return function forEach(callback, thisArg) {
+    const observed = this;
+    const target = observed[
+      "__v_raw"
+      /* RAW */
+    ];
+    const rawTarget = toRaw(target);
+    const wrap = isShallow ? toShallow : isReadonly ? toReadonly : toReactive;
+    !isReadonly && track(rawTarget, "iterate", ITERATE_KEY);
+    return target.forEach((value, key) => {
+      return callback.call(thisArg, wrap(value), wrap(key), observed);
+    });
+  };
+}
+function createIterableMethod(method, isReadonly, isShallow) {
+  return function(...args) {
+    const target = this[
+      "__v_raw"
+      /* RAW */
+    ];
+    const rawTarget = toRaw(target);
+    const targetIsMap = isMap(rawTarget);
+    const isPair = method === "entries" || method === Symbol.iterator && targetIsMap;
+    const isKeyOnly = method === "keys" && targetIsMap;
+    const innerIterator = target[method](...args);
+    const wrap = isShallow ? toShallow : isReadonly ? toReadonly : toReactive;
+    !isReadonly && track(rawTarget, "iterate", isKeyOnly ? MAP_KEY_ITERATE_KEY : ITERATE_KEY);
+    return {
+      // iterator protocol
+      next() {
+        const { value, done } = innerIterator.next();
+        return done ? { value, done } : {
+          value: isPair ? [wrap(value[0]), wrap(value[1])] : wrap(value),
+          done
+        };
+      },
+      // iterable protocol
+      [Symbol.iterator]() {
+        return this;
+      }
+    };
+  };
+}
+function createReadonlyMethod(type) {
+  return function(...args) {
+    if (true) {
+      const key = args[0] ? `on key "${args[0]}" ` : ``;
+      console.warn(`${capitalize(type)} operation ${key}failed: target is readonly.`, toRaw(this));
+    }
+    return type === "delete" ? false : this;
+  };
+}
+function createInstrumentations() {
+  const mutableInstrumentations2 = {
+    get(key) {
+      return get$1(this, key);
+    },
+    get size() {
+      return size(this);
+    },
+    has: has$1,
+    add,
+    set: set$1,
+    delete: deleteEntry,
+    clear,
+    forEach: createForEach(false, false)
+  };
+  const shallowInstrumentations2 = {
+    get(key) {
+      return get$1(this, key, false, true);
+    },
+    get size() {
+      return size(this);
+    },
+    has: has$1,
+    add,
+    set: set$1,
+    delete: deleteEntry,
+    clear,
+    forEach: createForEach(false, true)
+  };
+  const readonlyInstrumentations2 = {
+    get(key) {
+      return get$1(this, key, true);
+    },
+    get size() {
+      return size(this, true);
+    },
+    has(key) {
+      return has$1.call(this, key, true);
+    },
+    add: createReadonlyMethod(
+      "add"
+      /* ADD */
+    ),
+    set: createReadonlyMethod(
+      "set"
+      /* SET */
+    ),
+    delete: createReadonlyMethod(
+      "delete"
+      /* DELETE */
+    ),
+    clear: createReadonlyMethod(
+      "clear"
+      /* CLEAR */
+    ),
+    forEach: createForEach(true, false)
+  };
+  const shallowReadonlyInstrumentations2 = {
+    get(key) {
+      return get$1(this, key, true, true);
+    },
+    get size() {
+      return size(this, true);
+    },
+    has(key) {
+      return has$1.call(this, key, true);
+    },
+    add: createReadonlyMethod(
+      "add"
+      /* ADD */
+    ),
+    set: createReadonlyMethod(
+      "set"
+      /* SET */
+    ),
+    delete: createReadonlyMethod(
+      "delete"
+      /* DELETE */
+    ),
+    clear: createReadonlyMethod(
+      "clear"
+      /* CLEAR */
+    ),
+    forEach: createForEach(true, true)
+  };
+  const iteratorMethods = ["keys", "values", "entries", Symbol.iterator];
+  iteratorMethods.forEach((method) => {
+    mutableInstrumentations2[method] = createIterableMethod(method, false, false);
+    readonlyInstrumentations2[method] = createIterableMethod(method, true, false);
+    shallowInstrumentations2[method] = createIterableMethod(method, false, true);
+    shallowReadonlyInstrumentations2[method] = createIterableMethod(method, true, true);
+  });
+  return [
+    mutableInstrumentations2,
+    readonlyInstrumentations2,
+    shallowInstrumentations2,
+    shallowReadonlyInstrumentations2
+  ];
+}
+var [mutableInstrumentations, readonlyInstrumentations, shallowInstrumentations, shallowReadonlyInstrumentations] = /* @__PURE__ */ createInstrumentations();
+function createInstrumentationGetter(isReadonly, shallow) {
+  const instrumentations = shallow ? isReadonly ? shallowReadonlyInstrumentations : shallowInstrumentations : isReadonly ? readonlyInstrumentations : mutableInstrumentations;
+  return (target, key, receiver) => {
+    if (key === "__v_isReactive") {
+      return !isReadonly;
+    } else if (key === "__v_isReadonly") {
+      return isReadonly;
+    } else if (key === "__v_raw") {
+      return target;
+    }
+    return Reflect.get(hasOwn(instrumentations, key) && key in target ? instrumentations : target, key, receiver);
+  };
+}
+var mutableCollectionHandlers = {
+  get: /* @__PURE__ */ createInstrumentationGetter(false, false)
+};
+var readonlyCollectionHandlers = {
+  get: /* @__PURE__ */ createInstrumentationGetter(true, false)
+};
+function checkIdentityKeys(target, has2, key) {
+  const rawKey = toRaw(key);
+  if (rawKey !== key && has2.call(target, rawKey)) {
+    const type = toRawType(target);
+    console.warn(`Reactive ${type} contains both the raw and reactive versions of the same object${type === `Map` ? ` as keys` : ``}, which can lead to inconsistencies. Avoid differentiating between the raw and reactive versions of an object and only use the reactive version if possible.`);
+  }
+}
+var reactiveMap = /* @__PURE__ */ new WeakMap();
+var shallowReactiveMap = /* @__PURE__ */ new WeakMap();
+var readonlyMap = /* @__PURE__ */ new WeakMap();
+var shallowReadonlyMap = /* @__PURE__ */ new WeakMap();
+function targetTypeMap(rawType) {
+  switch (rawType) {
+    case "Object":
+    case "Array":
+      return 1;
+    case "Map":
+    case "Set":
+    case "WeakMap":
+    case "WeakSet":
+      return 2;
+    default:
+      return 0;
+  }
+}
+function getTargetType(value) {
+  return value[
+    "__v_skip"
+    /* SKIP */
+  ] || !Object.isExtensible(value) ? 0 : targetTypeMap(toRawType(value));
+}
+function reactive2(target) {
+  if (target && target[
+    "__v_isReadonly"
+    /* IS_READONLY */
+  ]) {
+    return target;
+  }
+  return createReactiveObject(target, false, mutableHandlers, mutableCollectionHandlers, reactiveMap);
+}
+function readonly(target) {
+  return createReactiveObject(target, true, readonlyHandlers, readonlyCollectionHandlers, readonlyMap);
+}
+function createReactiveObject(target, isReadonly, baseHandlers, collectionHandlers, proxyMap) {
+  if (!isObject(target)) {
+    if (true) {
+      console.warn(`value cannot be made reactive: ${String(target)}`);
+    }
+    return target;
+  }
+  if (target[
+    "__v_raw"
+    /* RAW */
+  ] && !(isReadonly && target[
+    "__v_isReactive"
+    /* IS_REACTIVE */
+  ])) {
+    return target;
+  }
+  const existingProxy = proxyMap.get(target);
+  if (existingProxy) {
+    return existingProxy;
+  }
+  const targetType = getTargetType(target);
+  if (targetType === 0) {
+    return target;
+  }
+  const proxy = new Proxy(target, targetType === 2 ? collectionHandlers : baseHandlers);
+  proxyMap.set(target, proxy);
+  return proxy;
+}
+function toRaw(observed) {
+  return observed && toRaw(observed[
+    "__v_raw"
+    /* RAW */
+  ]) || observed;
+}
+function isRef(r) {
+  return Boolean(r && r.__v_isRef === true);
+}
+
+// packages/alpinejs/src/magics/$nextTick.js
+magic("nextTick", () => nextTick);
+
+// packages/alpinejs/src/magics/$dispatch.js
+magic("dispatch", (el) => dispatch.bind(dispatch, el));
+
+// packages/alpinejs/src/magics/$watch.js
+magic("watch", (el, { evaluateLater: evaluateLater2, effect: effect3 }) => (key, callback) => {
+  let evaluate2 = evaluateLater2(key);
+  let firstTime = true;
+  let oldValue;
+  let effectReference = effect3(() => evaluate2((value) => {
+    JSON.stringify(value);
+    if (!firstTime) {
+      queueMicrotask(() => {
+        callback(value, oldValue);
+        oldValue = value;
+      });
+    } else {
+      oldValue = value;
+    }
+    firstTime = false;
+  }));
+  el._x_effects.delete(effectReference);
+});
+
+// packages/alpinejs/src/magics/$store.js
+magic("store", getStores);
+
+// packages/alpinejs/src/magics/$data.js
+magic("data", (el) => scope(el));
+
+// packages/alpinejs/src/magics/$root.js
+magic("root", (el) => closestRoot(el));
+
+// packages/alpinejs/src/magics/$refs.js
+magic("refs", (el) => {
+  if (el._x_refs_proxy)
+    return el._x_refs_proxy;
+  el._x_refs_proxy = mergeProxies(getArrayOfRefObject(el));
+  return el._x_refs_proxy;
+});
+function getArrayOfRefObject(el) {
+  let refObjects = [];
+  let currentEl = el;
+  while (currentEl) {
+    if (currentEl._x_refs)
+      refObjects.push(currentEl._x_refs);
+    currentEl = currentEl.parentNode;
+  }
+  return refObjects;
+}
+
+// packages/alpinejs/src/ids.js
+var globalIdMemo = {};
+function findAndIncrementId(name) {
+  if (!globalIdMemo[name])
+    globalIdMemo[name] = 0;
+  return ++globalIdMemo[name];
+}
+function closestIdRoot(el, name) {
+  return findClosest(el, (element) => {
+    if (element._x_ids && element._x_ids[name])
+      return true;
+  });
+}
+function setIdRoot(el, name) {
+  if (!el._x_ids)
+    el._x_ids = {};
+  if (!el._x_ids[name])
+    el._x_ids[name] = findAndIncrementId(name);
+}
+
+// packages/alpinejs/src/magics/$id.js
+magic("id", (el) => (name, key = null) => {
+  let root = closestIdRoot(el, name);
+  let id = root ? root._x_ids[name] : findAndIncrementId(name);
+  return key ? `${name}-${id}-${key}` : `${name}-${id}`;
+});
+
+// packages/alpinejs/src/magics/$el.js
+magic("el", (el) => el);
+
+// packages/alpinejs/src/magics/index.js
+warnMissingPluginMagic("Focus", "focus", "focus");
+warnMissingPluginMagic("Persist", "persist", "persist");
+function warnMissingPluginMagic(name, magicName, slug) {
+  magic(magicName, (el) => warn(`You can't use [$${magicName}] without first installing the "${name}" plugin here: https://alpinejs.dev/plugins/${slug}`, el));
+}
+
+// packages/alpinejs/src/directives/x-modelable.js
+directive("modelable", (el, { expression }, { effect: effect3, evaluateLater: evaluateLater2, cleanup: cleanup2 }) => {
+  let func = evaluateLater2(expression);
+  let innerGet = () => {
+    let result;
+    func((i) => result = i);
+    return result;
+  };
+  let evaluateInnerSet = evaluateLater2(`${expression} = __placeholder`);
+  let innerSet = (val) => evaluateInnerSet(() => {
+  }, { scope: { "__placeholder": val } });
+  let initialValue = innerGet();
+  innerSet(initialValue);
+  queueMicrotask(() => {
+    if (!el._x_model)
+      return;
+    el._x_removeModelListeners["default"]();
+    let outerGet = el._x_model.get;
+    let outerSet = el._x_model.set;
+    let releaseEntanglement = entangle(
+      {
+        get() {
+          return outerGet();
+        },
+        set(value) {
+          outerSet(value);
+        }
+      },
+      {
+        get() {
+          return innerGet();
+        },
+        set(value) {
+          innerSet(value);
+        }
+      }
+    );
+    cleanup2(releaseEntanglement);
+  });
+});
+
+// packages/alpinejs/src/directives/x-teleport.js
+directive("teleport", (el, { modifiers, expression }, { cleanup: cleanup2 }) => {
+  if (el.tagName.toLowerCase() !== "template")
+    warn("x-teleport can only be used on a <template> tag", el);
+  let target = getTarget(expression);
+  let clone2 = el.content.cloneNode(true).firstElementChild;
+  el._x_teleport = clone2;
+  clone2._x_teleportBack = el;
+  el.setAttribute("data-teleport-template", true);
+  clone2.setAttribute("data-teleport-target", true);
+  if (el._x_forwardEvents) {
+    el._x_forwardEvents.forEach((eventName) => {
+      clone2.addEventListener(eventName, (e) => {
+        e.stopPropagation();
+        el.dispatchEvent(new e.constructor(e.type, e));
+      });
+    });
+  }
+  addScopeToNode(clone2, {}, el);
+  let placeInDom = (clone3, target2, modifiers2) => {
+    if (modifiers2.includes("prepend")) {
+      target2.parentNode.insertBefore(clone3, target2);
+    } else if (modifiers2.includes("append")) {
+      target2.parentNode.insertBefore(clone3, target2.nextSibling);
+    } else {
+      target2.appendChild(clone3);
+    }
+  };
+  mutateDom(() => {
+    placeInDom(clone2, target, modifiers);
+    initTree(clone2);
+    clone2._x_ignore = true;
+  });
+  el._x_teleportPutBack = () => {
+    let target2 = getTarget(expression);
+    mutateDom(() => {
+      placeInDom(el._x_teleport, target2, modifiers);
+    });
+  };
+  cleanup2(() => clone2.remove());
+});
+var teleportContainerDuringClone = document.createElement("div");
+function getTarget(expression) {
+  let target = skipDuringClone(() => {
+    return document.querySelector(expression);
+  }, () => {
+    return teleportContainerDuringClone;
+  })();
+  if (!target)
+    warn(`Cannot find x-teleport element for selector: "${expression}"`);
+  return target;
+}
+
+// packages/alpinejs/src/directives/x-ignore.js
+var handler = () => {
+};
+handler.inline = (el, { modifiers }, { cleanup: cleanup2 }) => {
+  modifiers.includes("self") ? el._x_ignoreSelf = true : el._x_ignore = true;
+  cleanup2(() => {
+    modifiers.includes("self") ? delete el._x_ignoreSelf : delete el._x_ignore;
+  });
+};
+directive("ignore", handler);
+
+// packages/alpinejs/src/directives/x-effect.js
+directive("effect", skipDuringClone((el, { expression }, { effect: effect3 }) => {
+  effect3(evaluateLater(el, expression));
+}));
+
+// packages/alpinejs/src/utils/on.js
+function on(el, event, modifiers, callback) {
+  let listenerTarget = el;
+  let handler4 = (e) => callback(e);
+  let options = {};
+  let wrapHandler = (callback2, wrapper) => (e) => wrapper(callback2, e);
+  if (modifiers.includes("dot"))
+    event = dotSyntax(event);
+  if (modifiers.includes("camel"))
+    event = camelCase2(event);
+  if (modifiers.includes("passive"))
+    options.passive = true;
+  if (modifiers.includes("capture"))
+    options.capture = true;
+  if (modifiers.includes("window"))
+    listenerTarget = window;
+  if (modifiers.includes("document"))
+    listenerTarget = document;
+  if (modifiers.includes("debounce")) {
+    let nextModifier = modifiers[modifiers.indexOf("debounce") + 1] || "invalid-wait";
+    let wait = isNumeric(nextModifier.split("ms")[0]) ? Number(nextModifier.split("ms")[0]) : 250;
+    handler4 = debounce(handler4, wait);
+  }
+  if (modifiers.includes("throttle")) {
+    let nextModifier = modifiers[modifiers.indexOf("throttle") + 1] || "invalid-wait";
+    let wait = isNumeric(nextModifier.split("ms")[0]) ? Number(nextModifier.split("ms")[0]) : 250;
+    handler4 = throttle(handler4, wait);
+  }
+  if (modifiers.includes("prevent"))
+    handler4 = wrapHandler(handler4, (next, e) => {
+      e.preventDefault();
+      next(e);
+    });
+  if (modifiers.includes("stop"))
+    handler4 = wrapHandler(handler4, (next, e) => {
+      e.stopPropagation();
+      next(e);
+    });
+  if (modifiers.includes("self"))
+    handler4 = wrapHandler(handler4, (next, e) => {
+      e.target === el && next(e);
+    });
+  if (modifiers.includes("away") || modifiers.includes("outside")) {
+    listenerTarget = document;
+    handler4 = wrapHandler(handler4, (next, e) => {
+      if (el.contains(e.target))
+        return;
+      if (e.target.isConnected === false)
+        return;
+      if (el.offsetWidth < 1 && el.offsetHeight < 1)
+        return;
+      if (el._x_isShown === false)
+        return;
+      next(e);
+    });
+  }
+  if (modifiers.includes("once")) {
+    handler4 = wrapHandler(handler4, (next, e) => {
+      next(e);
+      listenerTarget.removeEventListener(event, handler4, options);
+    });
+  }
+  handler4 = wrapHandler(handler4, (next, e) => {
+    if (isKeyEvent(event)) {
+      if (isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers)) {
+        return;
+      }
+    }
+    next(e);
+  });
+  listenerTarget.addEventListener(event, handler4, options);
+  return () => {
+    listenerTarget.removeEventListener(event, handler4, options);
+  };
+}
+function dotSyntax(subject) {
+  return subject.replace(/-/g, ".");
+}
+function camelCase2(subject) {
+  return subject.toLowerCase().replace(/-(\w)/g, (match, char) => char.toUpperCase());
+}
+function isNumeric(subject) {
+  return !Array.isArray(subject) && !isNaN(subject);
+}
+function kebabCase2(subject) {
+  if ([" ", "_"].includes(
+    subject
+  ))
+    return subject;
+  return subject.replace(/([a-z])([A-Z])/g, "$1-$2").replace(/[_\s]/, "-").toLowerCase();
+}
+function isKeyEvent(event) {
+  return ["keydown", "keyup"].includes(event);
+}
+function isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers) {
+  let keyModifiers = modifiers.filter((i) => {
+    return !["window", "document", "prevent", "stop", "once", "capture"].includes(i);
+  });
+  if (keyModifiers.includes("debounce")) {
+    let debounceIndex = keyModifiers.indexOf("debounce");
+    keyModifiers.splice(debounceIndex, isNumeric((keyModifiers[debounceIndex + 1] || "invalid-wait").split("ms")[0]) ? 2 : 1);
+  }
+  if (keyModifiers.includes("throttle")) {
+    let debounceIndex = keyModifiers.indexOf("throttle");
+    keyModifiers.splice(debounceIndex, isNumeric((keyModifiers[debounceIndex + 1] || "invalid-wait").split("ms")[0]) ? 2 : 1);
+  }
+  if (keyModifiers.length === 0)
+    return false;
+  if (keyModifiers.length === 1 && keyToModifiers(e.key).includes(keyModifiers[0]))
+    return false;
+  const systemKeyModifiers = ["ctrl", "shift", "alt", "meta", "cmd", "super"];
+  const selectedSystemKeyModifiers = systemKeyModifiers.filter((modifier) => keyModifiers.includes(modifier));
+  keyModifiers = keyModifiers.filter((i) => !selectedSystemKeyModifiers.includes(i));
+  if (selectedSystemKeyModifiers.length > 0) {
+    const activelyPressedKeyModifiers = selectedSystemKeyModifiers.filter((modifier) => {
+      if (modifier === "cmd" || modifier === "super")
+        modifier = "meta";
+      return e[`${modifier}Key`];
+    });
+    if (activelyPressedKeyModifiers.length === selectedSystemKeyModifiers.length) {
+      if (keyToModifiers(e.key).includes(keyModifiers[0]))
+        return false;
+    }
+  }
+  return true;
+}
+function keyToModifiers(key) {
+  if (!key)
+    return [];
+  key = kebabCase2(key);
+  let modifierToKeyMap = {
+    "ctrl": "control",
+    "slash": "/",
+    "space": " ",
+    "spacebar": " ",
+    "cmd": "meta",
+    "esc": "escape",
+    "up": "arrow-up",
+    "down": "arrow-down",
+    "left": "arrow-left",
+    "right": "arrow-right",
+    "period": ".",
+    "equal": "=",
+    "minus": "-",
+    "underscore": "_"
+  };
+  modifierToKeyMap[key] = key;
+  return Object.keys(modifierToKeyMap).map((modifier) => {
+    if (modifierToKeyMap[modifier] === key)
+      return modifier;
+  }).filter((modifier) => modifier);
+}
+
+// packages/alpinejs/src/directives/x-model.js
+directive("model", (el, { modifiers, expression }, { effect: effect3, cleanup: cleanup2 }) => {
+  let scopeTarget = el;
+  if (modifiers.includes("parent")) {
+    scopeTarget = el.parentNode;
+  }
+  let evaluateGet = evaluateLater(scopeTarget, expression);
+  let evaluateSet;
+  if (typeof expression === "string") {
+    evaluateSet = evaluateLater(scopeTarget, `${expression} = __placeholder`);
+  } else if (typeof expression === "function" && typeof expression() === "string") {
+    evaluateSet = evaluateLater(scopeTarget, `${expression()} = __placeholder`);
+  } else {
+    evaluateSet = () => {
+    };
+  }
+  let getValue = () => {
+    let result;
+    evaluateGet((value) => result = value);
+    return isGetterSetter(result) ? result.get() : result;
+  };
+  let setValue = (value) => {
+    let result;
+    evaluateGet((value2) => result = value2);
+    if (isGetterSetter(result)) {
+      result.set(value);
+    } else {
+      evaluateSet(() => {
+      }, {
+        scope: { "__placeholder": value }
+      });
+    }
+  };
+  if (typeof expression === "string" && el.type === "radio") {
+    mutateDom(() => {
+      if (!el.hasAttribute("name"))
+        el.setAttribute("name", expression);
+    });
+  }
+  var event = el.tagName.toLowerCase() === "select" || ["checkbox", "radio"].includes(el.type) || modifiers.includes("lazy") ? "change" : "input";
+  let removeListener = isCloning ? () => {
+  } : on(el, event, modifiers, (e) => {
+    setValue(getInputValue(el, modifiers, e, getValue()));
+  });
+  if (modifiers.includes("fill")) {
+    if ([null, ""].includes(getValue()) || el.type === "checkbox" && Array.isArray(getValue())) {
+      el.dispatchEvent(new Event(event, {}));
+    }
+  }
+  if (!el._x_removeModelListeners)
+    el._x_removeModelListeners = {};
+  el._x_removeModelListeners["default"] = removeListener;
+  cleanup2(() => el._x_removeModelListeners["default"]());
+  if (el.form) {
+    let removeResetListener = on(el.form, "reset", [], (e) => {
+      nextTick(() => el._x_model && el._x_model.set(el.value));
+    });
+    cleanup2(() => removeResetListener());
+  }
+  el._x_model = {
+    get() {
+      return getValue();
+    },
+    set(value) {
+      setValue(value);
+    }
+  };
+  el._x_forceModelUpdate = (value) => {
+    if (value === void 0 && typeof expression === "string" && expression.match(/\./))
+      value = "";
+    window.fromModel = true;
+    mutateDom(() => bind(el, "value", value));
+    delete window.fromModel;
+  };
+  effect3(() => {
+    let value = getValue();
+    if (modifiers.includes("unintrusive") && document.activeElement.isSameNode(el))
+      return;
+    el._x_forceModelUpdate(value);
+  });
+});
+function getInputValue(el, modifiers, event, currentValue) {
+  return mutateDom(() => {
+    if (event instanceof CustomEvent && event.detail !== void 0)
+      return event.detail !== null && event.detail !== void 0 ? event.detail : event.target.value;
+    else if (el.type === "checkbox") {
+      if (Array.isArray(currentValue)) {
+        let newValue = null;
+        if (modifiers.includes("number")) {
+          newValue = safeParseNumber(event.target.value);
+        } else if (modifiers.includes("boolean")) {
+          newValue = safeParseBoolean(event.target.value);
+        } else {
+          newValue = event.target.value;
+        }
+        return event.target.checked ? currentValue.concat([newValue]) : currentValue.filter((el2) => !checkedAttrLooseCompare2(el2, newValue));
+      } else {
+        return event.target.checked;
+      }
+    } else if (el.tagName.toLowerCase() === "select" && el.multiple) {
+      if (modifiers.includes("number")) {
+        return Array.from(event.target.selectedOptions).map((option) => {
+          let rawValue = option.value || option.text;
+          return safeParseNumber(rawValue);
+        });
+      } else if (modifiers.includes("boolean")) {
+        return Array.from(event.target.selectedOptions).map((option) => {
+          let rawValue = option.value || option.text;
+          return safeParseBoolean(rawValue);
+        });
+      }
+      return Array.from(event.target.selectedOptions).map((option) => {
+        return option.value || option.text;
+      });
+    } else {
+      if (modifiers.includes("number")) {
+        return safeParseNumber(event.target.value);
+      } else if (modifiers.includes("boolean")) {
+        return safeParseBoolean(event.target.value);
+      }
+      return modifiers.includes("trim") ? event.target.value.trim() : event.target.value;
+    }
+  });
+}
+function safeParseNumber(rawValue) {
+  let number = rawValue ? parseFloat(rawValue) : null;
+  return isNumeric2(number) ? number : rawValue;
+}
+function checkedAttrLooseCompare2(valueA, valueB) {
+  return valueA == valueB;
+}
+function isNumeric2(subject) {
+  return !Array.isArray(subject) && !isNaN(subject);
+}
+function isGetterSetter(value) {
+  return value !== null && typeof value === "object" && typeof value.get === "function" && typeof value.set === "function";
+}
+
+// packages/alpinejs/src/directives/x-cloak.js
+directive("cloak", (el) => queueMicrotask(() => mutateDom(() => el.removeAttribute(prefix("cloak")))));
+
+// packages/alpinejs/src/directives/x-init.js
+addInitSelector(() => `[${prefix("init")}]`);
+directive("init", skipDuringClone((el, { expression }, { evaluate: evaluate2 }) => {
+  if (typeof expression === "string") {
+    return !!expression.trim() && evaluate2(expression, {}, false);
+  }
+  return evaluate2(expression, {}, false);
+}));
+
+// packages/alpinejs/src/directives/x-text.js
+directive("text", (el, { expression }, { effect: effect3, evaluateLater: evaluateLater2 }) => {
+  let evaluate2 = evaluateLater2(expression);
+  effect3(() => {
+    evaluate2((value) => {
+      mutateDom(() => {
+        el.textContent = value;
+      });
+    });
+  });
+});
+
+// packages/alpinejs/src/directives/x-html.js
+directive("html", (el, { expression }, { effect: effect3, evaluateLater: evaluateLater2 }) => {
+  let evaluate2 = evaluateLater2(expression);
+  effect3(() => {
+    evaluate2((value) => {
+      mutateDom(() => {
+        el.innerHTML = value;
+        el._x_ignoreSelf = true;
+        initTree(el);
+        delete el._x_ignoreSelf;
+      });
+    });
+  });
+});
+
+// packages/alpinejs/src/directives/x-bind.js
+mapAttributes(startingWith(":", into(prefix("bind:"))));
+var handler2 = (el, { value, modifiers, expression, original }, { effect: effect3 }) => {
+  if (!value) {
+    let bindingProviders = {};
+    injectBindingProviders(bindingProviders);
+    let getBindings = evaluateLater(el, expression);
+    getBindings((bindings) => {
+      applyBindingsObject(el, bindings, original);
+    }, { scope: bindingProviders });
+    return;
+  }
+  if (value === "key")
+    return storeKeyForXFor(el, expression);
+  if (el._x_inlineBindings && el._x_inlineBindings[value] && el._x_inlineBindings[value].extract) {
+    return;
+  }
+  let evaluate2 = evaluateLater(el, expression);
+  effect3(() => evaluate2((result) => {
+    if (result === void 0 && typeof expression === "string" && expression.match(/\./)) {
+      result = "";
+    }
+    mutateDom(() => bind(el, value, result, modifiers));
+  }));
+};
+handler2.inline = (el, { value, modifiers, expression }) => {
+  if (!value)
+    return;
+  if (!el._x_inlineBindings)
+    el._x_inlineBindings = {};
+  el._x_inlineBindings[value] = { expression, extract: false };
+};
+directive("bind", handler2);
+function storeKeyForXFor(el, expression) {
+  el._x_keyExpression = expression;
+}
+
+// packages/alpinejs/src/directives/x-data.js
+addRootSelector(() => `[${prefix("data")}]`);
+directive("data", (el, { expression }, { cleanup: cleanup2 }) => {
+  if (shouldSkipRegisteringDataDuringClone(el))
+    return;
+  expression = expression === "" ? "{}" : expression;
+  let magicContext = {};
+  injectMagics(magicContext, el);
+  let dataProviderContext = {};
+  injectDataProviders(dataProviderContext, magicContext);
+  let data2 = evaluate(el, expression, { scope: dataProviderContext });
+  if (data2 === void 0 || data2 === true)
+    data2 = {};
+  injectMagics(data2, el);
+  let reactiveData = reactive(data2);
+  initInterceptors2(reactiveData);
+  let undo = addScopeToNode(el, reactiveData);
+  reactiveData["init"] && evaluate(el, reactiveData["init"]);
+  cleanup2(() => {
+    reactiveData["destroy"] && evaluate(el, reactiveData["destroy"]);
+    undo();
+  });
+});
+interceptClone((from, to) => {
+  if (from._x_dataStack) {
+    to._x_dataStack = from._x_dataStack;
+    to.setAttribute("data-has-alpine-state", true);
+  }
+});
+function shouldSkipRegisteringDataDuringClone(el) {
+  if (!isCloning)
+    return false;
+  if (isCloningLegacy)
+    return true;
+  return el.hasAttribute("data-has-alpine-state");
+}
+
+// packages/alpinejs/src/directives/x-show.js
+directive("show", (el, { modifiers, expression }, { effect: effect3 }) => {
+  let evaluate2 = evaluateLater(el, expression);
+  if (!el._x_doHide)
+    el._x_doHide = () => {
+      mutateDom(() => {
+        el.style.setProperty("display", "none", modifiers.includes("important") ? "important" : void 0);
+      });
+    };
+  if (!el._x_doShow)
+    el._x_doShow = () => {
+      mutateDom(() => {
+        if (el.style.length === 1 && el.style.display === "none") {
+          el.removeAttribute("style");
+        } else {
+          el.style.removeProperty("display");
+        }
+      });
+    };
+  let hide = () => {
+    el._x_doHide();
+    el._x_isShown = false;
+  };
+  let show = () => {
+    el._x_doShow();
+    el._x_isShown = true;
+  };
+  let clickAwayCompatibleShow = () => setTimeout(show);
+  let toggle = once(
+    (value) => value ? show() : hide(),
+    (value) => {
+      if (typeof el._x_toggleAndCascadeWithTransitions === "function") {
+        el._x_toggleAndCascadeWithTransitions(el, value, show, hide);
+      } else {
+        value ? clickAwayCompatibleShow() : hide();
+      }
+    }
+  );
+  let oldValue;
+  let firstTime = true;
+  effect3(() => evaluate2((value) => {
+    if (!firstTime && value === oldValue)
+      return;
+    if (modifiers.includes("immediate"))
+      value ? clickAwayCompatibleShow() : hide();
+    toggle(value);
+    oldValue = value;
+    firstTime = false;
+  }));
+});
+
+// packages/alpinejs/src/directives/x-for.js
+directive("for", (el, { expression }, { effect: effect3, cleanup: cleanup2 }) => {
+  let iteratorNames = parseForExpression(expression);
+  let evaluateItems = evaluateLater(el, iteratorNames.items);
+  let evaluateKey = evaluateLater(
+    el,
+    // the x-bind:key expression is stored for our use instead of evaluated.
+    el._x_keyExpression || "index"
+  );
+  el._x_prevKeys = [];
+  el._x_lookup = {};
+  effect3(() => loop(el, iteratorNames, evaluateItems, evaluateKey));
+  cleanup2(() => {
+    Object.values(el._x_lookup).forEach((el2) => el2.remove());
+    delete el._x_prevKeys;
+    delete el._x_lookup;
+  });
+});
+function loop(el, iteratorNames, evaluateItems, evaluateKey) {
+  let isObject2 = (i) => typeof i === "object" && !Array.isArray(i);
+  let templateEl = el;
+  evaluateItems((items) => {
+    if (isNumeric3(items) && items >= 0) {
+      items = Array.from(Array(items).keys(), (i) => i + 1);
+    }
+    if (items === void 0)
+      items = [];
+    let lookup = el._x_lookup;
+    let prevKeys = el._x_prevKeys;
+    let scopes = [];
+    let keys = [];
+    if (isObject2(items)) {
+      items = Object.entries(items).map(([key, value]) => {
+        let scope2 = getIterationScopeVariables(iteratorNames, value, key, items);
+        evaluateKey((value2) => keys.push(value2), { scope: { index: key, ...scope2 } });
+        scopes.push(scope2);
+      });
+    } else {
+      for (let i = 0; i < items.length; i++) {
+        let scope2 = getIterationScopeVariables(iteratorNames, items[i], i, items);
+        evaluateKey((value) => keys.push(value), { scope: { index: i, ...scope2 } });
+        scopes.push(scope2);
+      }
+    }
+    let adds = [];
+    let moves = [];
+    let removes = [];
+    let sames = [];
+    for (let i = 0; i < prevKeys.length; i++) {
+      let key = prevKeys[i];
+      if (keys.indexOf(key) === -1)
+        removes.push(key);
+    }
+    prevKeys = prevKeys.filter((key) => !removes.includes(key));
+    let lastKey = "template";
+    for (let i = 0; i < keys.length; i++) {
+      let key = keys[i];
+      let prevIndex = prevKeys.indexOf(key);
+      if (prevIndex === -1) {
+        prevKeys.splice(i, 0, key);
+        adds.push([lastKey, i]);
+      } else if (prevIndex !== i) {
+        let keyInSpot = prevKeys.splice(i, 1)[0];
+        let keyForSpot = prevKeys.splice(prevIndex - 1, 1)[0];
+        prevKeys.splice(i, 0, keyForSpot);
+        prevKeys.splice(prevIndex, 0, keyInSpot);
+        moves.push([keyInSpot, keyForSpot]);
+      } else {
+        sames.push(key);
+      }
+      lastKey = key;
+    }
+    for (let i = 0; i < removes.length; i++) {
+      let key = removes[i];
+      if (!!lookup[key]._x_effects) {
+        lookup[key]._x_effects.forEach(dequeueJob);
+      }
+      lookup[key].remove();
+      lookup[key] = null;
+      delete lookup[key];
+    }
+    for (let i = 0; i < moves.length; i++) {
+      let [keyInSpot, keyForSpot] = moves[i];
+      let elInSpot = lookup[keyInSpot];
+      let elForSpot = lookup[keyForSpot];
+      let marker = document.createElement("div");
+      mutateDom(() => {
+        if (!elForSpot)
+          warn(`x-for ":key" is undefined or invalid`, templateEl);
+        elForSpot.after(marker);
+        elInSpot.after(elForSpot);
+        elForSpot._x_currentIfEl && elForSpot.after(elForSpot._x_currentIfEl);
+        marker.before(elInSpot);
+        elInSpot._x_currentIfEl && elInSpot.after(elInSpot._x_currentIfEl);
+        marker.remove();
+      });
+      elForSpot._x_refreshXForScope(scopes[keys.indexOf(keyForSpot)]);
+    }
+    for (let i = 0; i < adds.length; i++) {
+      let [lastKey2, index] = adds[i];
+      let lastEl = lastKey2 === "template" ? templateEl : lookup[lastKey2];
+      if (lastEl._x_currentIfEl)
+        lastEl = lastEl._x_currentIfEl;
+      let scope2 = scopes[index];
+      let key = keys[index];
+      let clone2 = document.importNode(templateEl.content, true).firstElementChild;
+      let reactiveScope = reactive(scope2);
+      addScopeToNode(clone2, reactiveScope, templateEl);
+      clone2._x_refreshXForScope = (newScope) => {
+        Object.entries(newScope).forEach(([key2, value]) => {
+          reactiveScope[key2] = value;
+        });
+      };
+      mutateDom(() => {
+        lastEl.after(clone2);
+        initTree(clone2);
+      });
+      if (typeof key === "object") {
+        warn("x-for key cannot be an object, it must be a string or an integer", templateEl);
+      }
+      lookup[key] = clone2;
+    }
+    for (let i = 0; i < sames.length; i++) {
+      lookup[sames[i]]._x_refreshXForScope(scopes[keys.indexOf(sames[i])]);
+    }
+    templateEl._x_prevKeys = keys;
+  });
+}
+function parseForExpression(expression) {
+  let forIteratorRE = /,([^,\}\]]*)(?:,([^,\}\]]*))?$/;
+  let stripParensRE = /^\s*\(|\)\s*$/g;
+  let forAliasRE = /([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/;
+  let inMatch = expression.match(forAliasRE);
+  if (!inMatch)
+    return;
+  let res = {};
+  res.items = inMatch[2].trim();
+  let item = inMatch[1].replace(stripParensRE, "").trim();
+  let iteratorMatch = item.match(forIteratorRE);
+  if (iteratorMatch) {
+    res.item = item.replace(forIteratorRE, "").trim();
+    res.index = iteratorMatch[1].trim();
+    if (iteratorMatch[2]) {
+      res.collection = iteratorMatch[2].trim();
+    }
+  } else {
+    res.item = item;
+  }
+  return res;
+}
+function getIterationScopeVariables(iteratorNames, item, index, items) {
+  let scopeVariables = {};
+  if (/^\[.*\]$/.test(iteratorNames.item) && Array.isArray(item)) {
+    let names = iteratorNames.item.replace("[", "").replace("]", "").split(",").map((i) => i.trim());
+    names.forEach((name, i) => {
+      scopeVariables[name] = item[i];
+    });
+  } else if (/^\{.*\}$/.test(iteratorNames.item) && !Array.isArray(item) && typeof item === "object") {
+    let names = iteratorNames.item.replace("{", "").replace("}", "").split(",").map((i) => i.trim());
+    names.forEach((name) => {
+      scopeVariables[name] = item[name];
+    });
+  } else {
+    scopeVariables[iteratorNames.item] = item;
+  }
+  if (iteratorNames.index)
+    scopeVariables[iteratorNames.index] = index;
+  if (iteratorNames.collection)
+    scopeVariables[iteratorNames.collection] = items;
+  return scopeVariables;
+}
+function isNumeric3(subject) {
+  return !Array.isArray(subject) && !isNaN(subject);
+}
+
+// packages/alpinejs/src/directives/x-ref.js
+function handler3() {
+}
+handler3.inline = (el, { expression }, { cleanup: cleanup2 }) => {
+  let root = closestRoot(el);
+  if (!root._x_refs)
+    root._x_refs = {};
+  root._x_refs[expression] = el;
+  cleanup2(() => delete root._x_refs[expression]);
+};
+directive("ref", handler3);
+
+// packages/alpinejs/src/directives/x-if.js
+directive("if", (el, { expression }, { effect: effect3, cleanup: cleanup2 }) => {
+  if (el.tagName.toLowerCase() !== "template")
+    warn("x-if can only be used on a <template> tag", el);
+  let evaluate2 = evaluateLater(el, expression);
+  let show = () => {
+    if (el._x_currentIfEl)
+      return el._x_currentIfEl;
+    let clone2 = el.content.cloneNode(true).firstElementChild;
+    addScopeToNode(clone2, {}, el);
+    mutateDom(() => {
+      el.after(clone2);
+      initTree(clone2);
+    });
+    el._x_currentIfEl = clone2;
+    el._x_undoIf = () => {
+      walk(clone2, (node) => {
+        if (!!node._x_effects) {
+          node._x_effects.forEach(dequeueJob);
+        }
+      });
+      clone2.remove();
+      delete el._x_currentIfEl;
+    };
+    return clone2;
+  };
+  let hide = () => {
+    if (!el._x_undoIf)
+      return;
+    el._x_undoIf();
+    delete el._x_undoIf;
+  };
+  effect3(() => evaluate2((value) => {
+    value ? show() : hide();
+  }));
+  cleanup2(() => el._x_undoIf && el._x_undoIf());
+});
+
+// packages/alpinejs/src/directives/x-id.js
+directive("id", (el, { expression }, { evaluate: evaluate2 }) => {
+  let names = evaluate2(expression);
+  names.forEach((name) => setIdRoot(el, name));
+});
+
+// packages/alpinejs/src/directives/x-on.js
+mapAttributes(startingWith("@", into(prefix("on:"))));
+directive("on", skipDuringClone((el, { value, modifiers, expression }, { cleanup: cleanup2 }) => {
+  let evaluate2 = expression ? evaluateLater(el, expression) : () => {
+  };
+  if (el.tagName.toLowerCase() === "template") {
+    if (!el._x_forwardEvents)
+      el._x_forwardEvents = [];
+    if (!el._x_forwardEvents.includes(value))
+      el._x_forwardEvents.push(value);
+  }
+  let removeListener = on(el, value, modifiers, (e) => {
+    evaluate2(() => {
+    }, { scope: { "$event": e }, params: [e] });
+  });
+  cleanup2(() => removeListener());
+}));
+
+// packages/alpinejs/src/directives/index.js
+warnMissingPluginDirective("Collapse", "collapse", "collapse");
+warnMissingPluginDirective("Intersect", "intersect", "intersect");
+warnMissingPluginDirective("Focus", "trap", "focus");
+warnMissingPluginDirective("Mask", "mask", "mask");
+function warnMissingPluginDirective(name, directiveName, slug) {
+  directive(directiveName, (el) => warn(`You can't use [x-${directiveName}] without first installing the "${name}" plugin here: https://alpinejs.dev/plugins/${slug}`, el));
+}
+
+// packages/alpinejs/src/index.js
+alpine_default.setEvaluator(normalEvaluator);
+alpine_default.setReactivityEngine({ reactive: reactive2, effect: effect2, release: stop, raw: toRaw });
+var src_default = alpine_default;
+
+// packages/alpinejs/builds/module.js
+var module_default = src_default;
+
+
+
+/***/ }),
+
+/***/ "./src/js/lib/alpine.js":
+/*!******************************!*\
+  !*** ./src/js/lib/alpine.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+
+
+window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"]
+
+ 
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!*****************************!*\
+  !*** ./src/js/lib/index.js ***!
+  \*****************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _alpine_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./alpine.js */ "./src/js/lib/alpine.js");
+
+
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=lib.bundle.js.map

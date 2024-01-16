@@ -1,4 +1,3 @@
-import {checked} from './shared';
 import app from './app';
 
 const bootstrap = () => {
